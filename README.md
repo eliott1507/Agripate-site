@@ -3,7 +3,6 @@
 Site e-commerce d’**Agripatte, chaussettes antidérapantes pour chat**. Il reprend la maquette d’origine (rangée dans `maquette/`) :
 - les 6 paires, les textes, les conseils et l’identité visuelle ;
 - reconstruits en site statique pensé pour le référencement Google ;
-- avec des animations en motion design réalisées avec [HyperFrames](https://hyperframes.heygen.com).
 
 ## Ce qu’il y a dans le dossier
 
