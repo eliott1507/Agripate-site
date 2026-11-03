@@ -1,0 +1,153 @@
+<!doctype html>
+<html
+  lang="fr"
+  data-composition-variables='[
+    {"id":"slug","type":"enum","label":"Paire","default":"moussaillon","options":[{"value":"essentielles","label":"Les Essentielles"},{"value":"guimauve","label":"Guimauve"},{"value":"moussaillon","label":"Moussaillon"},{"value":"flocon","label":"Flocon"},{"value":"neon","label":"Néon"},{"value":"sieste","label":"Douce Sieste"}]},
+    {"id":"photo","type":"string","label":"Photo détourée","default":"assets/moussaillon.png"},
+    {"id":"name","type":"string","label":"Nom","default":"Moussaillon"},
+    {"id":"usage","type":"string","label":"Usage","default":"Parquet & escaliers"},
+    {"id":"tint","type":"color","label":"Fond","default":"#d9e4f7"},
+    {"id":"deep","type":"color","label":"Couleur du texte","default":"#22407a"},
+    {"id":"grip","type":"number","label":"Adhérence (1 à 5)","default":4,"min":1,"max":5,"step":1},
+    {"id":"gripLabel","type":"string","label":"Adhérence (mot)","default":"Forte"},
+    {"id":"fx","type":"number","label":"Picots : position X (0 à 1)","default":0.56,"min":0,"max":1,"step":0.01},
+    {"id":"fy","type":"number","label":"Picots : position Y (0 à 1)","default":0.8,"min":0,"max":1,"step":0.01}
+  ]'
+>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1080" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+    <style>
+      @font-face { font-family: "Fredoka"; src: url("assets/fonts/fredoka.woff2") format("woff2"); font-weight: 300 700; }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1080px; overflow: hidden; background: var(--tint, #d9e4f7); }
+      #root { position: relative; width: 100%; height: 100%; overflow: hidden; font-family: "Nunito", sans-serif; background: var(--tint, #d9e4f7); }
+      #ring { position: absolute; left: 540px; top: 520px; width: 0; height: 0; }
+      #ring-spin { position: absolute; left: 0; top: 0; width: 0; height: 0; }
+      .ring-paw { position: absolute; left: -44px; top: -44px; width: 88px; height: 88px; opacity: 0.55; }
+      #camera { position: absolute; inset: 0; transform-origin: 0 0; }
+      #hop { position: absolute; left: 130px; top: 110px; width: 820px; height: 820px; transform-origin: 50% 92%; }
+      #photo { width: 100%; height: 100%; display: block; }
+      #shadow { position: absolute; left: 330px; top: 870px; width: 420px; height: 56px; border-radius: 50%; background: radial-gradient(closest-side, rgba(59, 42, 38, 0.26), rgba(59, 42, 38, 0)); }
+      #focus { position: absolute; width: 0; height: 0; }
+      #focus-ring { position: absolute; left: -150px; top: -150px; width: 300px; height: 300px; }
+      #callout { position: absolute; left: 0; top: 0; width: 1080px; height: 1080px; pointer-events: none; }
+      #label { position: absolute; left: 70px; top: 70px; padding: 22px 34px 24px; border-radius: 34px; background: #ffffff; box-shadow: 0 8px 0 rgba(59, 42, 38, 0.16); font-family: "Fredoka", sans-serif; color: var(--deep, #22407a); }
+      #label-title { display: block; font-weight: 700; font-size: 56px; line-height: 1; }
+      #label-grip { display: flex; align-items: center; gap: 10px; margin-top: 16px; font-weight: 600; font-size: 36px; line-height: 1; }
+      .meter-paw { width: 44px; height: 44px; }
+      .meter-paw svg { display: block; }
+      #tag { position: absolute; left: 70px; top: 930px; }
+      #tag-pill { display: flex; align-items: baseline; gap: 18px; padding: 16px 32px 18px; border-radius: 999px; background: #3b2a26; color: #fff6ea; font-family: "Fredoka", sans-serif; line-height: 1; white-space: nowrap; }
+      #tag-name { font-weight: 700; font-size: 50px; }
+      #tag-usage { font-weight: 500; font-size: 34px; color: #ffb59e; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="6" data-width="1080" data-height="1080">
+      <div id="ring" data-layout-ignore>
+        <div id="ring-spin">
+          <div class="ring-paw" style="transform: rotate(0deg) translateY(-470px) rotate(20deg)"><svg viewBox="0 0 100 100" width="100%" height="100%" aria-hidden="true"><use href="#paw" fill="#ffffff" /></svg></div>
+          <div class="ring-paw" style="transform: rotate(36deg) translateY(-470px) rotate(160deg)"><svg viewBox="0 0 100 100" width="100%" height="100%" aria-hidden="true"><use href="#paw" fill="#ffffff" /></svg></div>
+          <div class="ring-paw" style="transform: rotate(72deg) translateY(-470px) rotate(20deg)"><svg viewBox="0 0 100 100" width="100%" height="100%" aria-hidden="true"><use href="#paw" fill="#ffffff" /></svg></div>
+          <div class="ring-paw" style="transform: rotate(108deg) translateY(-470px) rotate(160deg)"><svg viewBox="0 0 100 100" width="100%" height="100%" aria-hidden="true"><use href="#paw" fill="#ffffff" /></svg></div>
+          <div class="ring-paw" style="transform: rotate(144deg) translateY(-470px) rotate(20deg)"><svg viewBox="0 0 100 100" width="100%" height="100%" aria-hidden="true"><use href="#paw" fill="#ffffff" /></svg></div>
+          <div class="ring-paw" style="transform: rotate(180deg) translateY(-470px) rotate(160deg)"><svg viewBox="0 0 100 100" width="100%" height="100%" aria-hidden="true"><use href="#paw" fill="#ffffff" /></svg></div>
+          <div class="ring-paw" style="transform: rotate(216deg) translateY(-470px) rotate(20deg)"><svg viewBox="0 0 100 100" width="100%" height="100%" aria-hidden="true"><use href="#paw" fill="#ffffff" /></svg></div>
+          <div class="ring-paw" style="transform: rotate(252deg) translateY(-470px) rotate(160deg)"><svg viewBox="0 0 100 100" width="100%" height="100%" aria-hidden="true"><use href="#paw" fill="#ffffff" /></svg></div>
+          <div class="ring-paw" style="transform: rotate(288deg) translateY(-470px) rotate(20deg)"><svg viewBox="0 0 100 100" width="100%" height="100%" aria-hidden="true"><use href="#paw" fill="#ffffff" /></svg></div>
+          <div class="ring-paw" style="transform: rotate(324deg) translateY(-470px) rotate(160deg)"><svg viewBox="0 0 100 100" width="100%" height="100%" aria-hidden="true"><use href="#paw" fill="#ffffff" /></svg></div>
+        </div>
+      </div>
+
+      <div id="camera">
+        <div id="shadow"></div>
+        <div id="hop"><img id="photo" src="assets/moussaillon.png" data-var-src="photo" alt="" width="512" height="512" /></div>
+        <div id="focus">
+          <svg id="focus-ring" viewBox="0 0 300 300" width="300" height="300" aria-hidden="true">
+            <circle id="focus-circle" cx="150" cy="150" r="130" fill="none" stroke="var(--deep, #22407a)" stroke-width="7" stroke-linecap="round" stroke-dasharray="20 18" />
+          </svg>
+        </div>
+      </div>
+
+      <div id="callout">
+        <div id="label">
+          <span id="label-title">Picots en silicone</span>
+          <span id="label-grip"
+            ><span class="meter-paw" id="m1"><svg viewBox="0 0 100 100" width="44" height="44" aria-hidden="true"><use href="#paw" /></svg></span
+            ><span class="meter-paw" id="m2"><svg viewBox="0 0 100 100" width="44" height="44" aria-hidden="true"><use href="#paw" /></svg></span
+            ><span class="meter-paw" id="m3"><svg viewBox="0 0 100 100" width="44" height="44" aria-hidden="true"><use href="#paw" /></svg></span
+            ><span class="meter-paw" id="m4"><svg viewBox="0 0 100 100" width="44" height="44" aria-hidden="true"><use href="#paw" /></svg></span
+            ><span class="meter-paw" id="m5"><svg viewBox="0 0 100 100" width="44" height="44" aria-hidden="true"><use href="#paw" /></svg></span
+            ><span id="grip-word">Adhérence <b data-var-text="gripLabel">Forte</b></span></span
+          >
+        </div>
+      </div>
+
+      <div id="tag">
+        <div id="tag-pill"><span id="tag-name" data-var-text="name">Moussaillon</span><span id="tag-usage" data-var-text="usage">Parquet &amp; escaliers</span></div>
+      </div>
+
+      <svg width="0" height="0" style="position: absolute" aria-hidden="true">
+        <defs>
+          <g id="paw"><ellipse cx="17" cy="38" rx="9" ry="11.5" transform="rotate(-24 17 38)" /><ellipse cx="37" cy="19" rx="9.5" ry="12.5" transform="rotate(-8 37 19)" /><ellipse cx="63" cy="19" rx="9.5" ry="12.5" transform="rotate(8 63 19)" /><ellipse cx="83" cy="38" rx="9" ry="11.5" transform="rotate(24 83 38)" /><path d="M50 45c-15 0-28 14-28 27 0 10 8 16 17 14 4-1 7-3 11-3s7 2 11 3c9 2 17-4 17-14 0-13-13-27-28-27z" /></g>
+        </defs>
+      </svg>
+    </div>
+
+    <script>
+      (function () {
+        const v = (window.__hyperframes && window.__hyperframes.getVariables && window.__hyperframes.getVariables()) || {};
+        const deep = v.deep || "#22407a";
+        const grip = Math.max(1, Math.min(5, Math.round(v.grip || 4)));
+        const fx = v.fx == null ? 0.56 : v.fx;
+        const fy = v.fy == null ? 0.8 : v.fy;
+
+        // Couleurs de la paire (fond, texte, jauge)
+        document.documentElement.style.setProperty("--tint", v.tint || "#d9e4f7");
+        document.documentElement.style.setProperty("--deep", deep);
+        for (let k = 1; k <= 5; k++) document.getElementById("m" + k).style.fill = "#e6d6c8";
+
+        // Point visé par le zoom : la zone des picots sur la photo (820 px de côté, placée en 130,110)
+        const px = 130 + 820 * fx;
+        const py = 110 + 820 * fy;
+        const zoom = 2.1;
+        document.getElementById("focus").style.left = px + "px";
+        document.getElementById("focus").style.top = py + "px";
+
+        const tl = gsap.timeline({ paused: true });
+
+        // Couronne de pattes : 36° par boucle de 6 s, raccord parfait (10 pattes)
+        tl.fromTo("#ring-spin", { rotation: 0 }, { rotation: 36, duration: 6, ease: "none" }, 0);
+
+        // 0,25 s : petit saut de la paire (écrasement à l'atterrissage)
+        tl.fromTo("#hop", { y: 0, scaleX: 1, scaleY: 1 }, { y: 0, scaleX: 1.08, scaleY: 0.9, duration: 0.12, ease: "power2.out" }, 0.25);
+        tl.fromTo("#hop", { y: 0, scaleX: 1.08, scaleY: 0.9 }, { y: -90, scaleX: 0.96, scaleY: 1.05, duration: 0.24, ease: "power2.out", immediateRender: false }, 0.37);
+        tl.fromTo("#hop", { y: -90, scaleX: 0.96, scaleY: 1.05 }, { y: 0, scaleX: 1, scaleY: 1, duration: 0.22, ease: "power2.in", immediateRender: false }, 0.61);
+        tl.fromTo("#hop", { scaleX: 1, scaleY: 1 }, { scaleX: 1.07, scaleY: 0.92, duration: 0.06, ease: "power2.out", immediateRender: false }, 0.83);
+        tl.fromTo("#hop", { scaleX: 1.07, scaleY: 0.92 }, { scaleX: 1, scaleY: 1, duration: 0.4, ease: "elastic.out(1, 0.45)", immediateRender: false }, 0.89);
+        tl.fromTo("#shadow", { scale: 1, opacity: 1 }, { scale: 0.75, opacity: 0.6, duration: 0.24, ease: "power2.out" }, 0.37);
+        tl.fromTo("#shadow", { scale: 0.75, opacity: 0.6 }, { scale: 1, opacity: 1, duration: 0.22, ease: "power2.in", immediateRender: false }, 0.61);
+
+        // 1,5 s : la caméra plonge sur les picots
+        const cam = { x: 540 - px * zoom, y: 600 - py * zoom };
+        tl.fromTo("#camera", { x: 0, y: 0, scale: 1 }, { x: cam.x, y: cam.y, scale: zoom, duration: 0.85, ease: "power2.inOut" }, 1.45);
+        tl.fromTo("#focus-circle", { strokeDashoffset: 0, rotation: 0, svgOrigin: "150 150" }, { strokeDashoffset: -152, rotation: 40, svgOrigin: "150 150", duration: 2.2, ease: "none" }, 2.1);
+        tl.fromTo("#focus-ring", { scale: 0, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.35, ease: "back.out(1.8)" }, 2.1);
+        tl.fromTo("#label", { scale: 0.4, opacity: 0, filter: "blur(8px)" }, { scale: 1, opacity: 1, filter: "blur(0px)", duration: 0.35, ease: "back.out(1.6)" }, 2.25);
+        tl.fromTo("#grip-word", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.18, ease: "power2.out" }, 2.55);
+        for (let k = 1; k <= 5; k++) {
+          tl.fromTo("#m" + k, { scale: 0.4 }, { scale: 1, duration: 0.22, ease: "back.out(2.4)" }, 2.6 + k * 0.09);
+          if (k <= grip) tl.fromTo("#m" + k, { fill: "#e6d6c8" }, { fill: deep, duration: 0.12, ease: "power1.out" }, 2.65 + k * 0.09);
+        }
+
+        // 4 s : on ressort, la paire réapparaît en entier
+        tl.fromTo(["#label", "#focus-ring"], { opacity: 1, filter: "blur(0px)" }, { opacity: 0, filter: "blur(8px)", duration: 0.2, ease: "power2.in", immediateRender: false }, 3.95);
+        tl.fromTo("#camera", { x: cam.x, y: cam.y, scale: zoom }, { x: 0, y: 0, scale: 1, duration: 0.85, ease: "power2.inOut", immediateRender: false }, 4.1);
+
+        window.__timelines["main"] = tl;
+      })();
+    </script>
+  </body>
+</html>

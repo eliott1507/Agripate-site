@@ -1,0 +1,42 @@
+<template>
+  <style>
+    @font-face { font-family: "Fredoka"; src: url("assets/fonts/fredoka.woff2") format("woff2"); font-weight: 300 700; }
+    #root { position: absolute; inset: 0; overflow: hidden; background: #ffe3d6; font-family: "Fredoka", sans-serif; }
+    #gm-title { position: absolute; left: 0; right: 0; top: 150px; text-align: center; font-weight: 700; font-size: 104px; line-height: 1; letter-spacing: -0.015em; color: #3b2a26; }
+    #gm-title span { display: inline-block; margin: 0 0.11em; }
+    #gm-row { position: absolute; left: 75px; top: 390px; width: 1770px; height: 520px; display: flex; gap: 30px; }
+    #root .gm-item { width: 270px; display: flex; flex-direction: column; align-items: center; gap: 14px; }
+    #root .gm-disc { width: 270px; height: 270px; border-radius: 50%; display: grid; place-items: center; }
+    #root .gm-disc img { width: 262px; height: 262px; display: block; }
+    #root .gm-name { font-weight: 700; font-size: 40px; line-height: 1; white-space: nowrap; }
+    #root .gm-use { font-family: "Nunito", sans-serif; font-weight: 800; font-size: 30px; line-height: 1.1; color: #3b2a26; text-align: center; }
+  </style>
+  <div id="root" data-composition-id="gammes" data-width="1920" data-height="1080">
+    <h2 id="gm-title"><span id="gm-w1">6 paires,</span><span id="gm-w2">une</span><span id="gm-w3">pour</span><span id="gm-w4">chaque</span><span id="gm-w5">chat.</span></h2>
+    <div id="gm-row">
+      <div class="gm-item" id="gm-1"><div class="gm-disc" style="background: #ebe7e3"><img src="assets/essentielles.png" alt="" width="512" height="512" /></div><span class="gm-name" style="color: #57504b">Essentielles</span><span class="gm-use">Tous les jours</span></div>
+      <div class="gm-item" id="gm-2"><div class="gm-disc" style="background: #ffdbe7"><img src="assets/guimauve.png" alt="" width="512" height="512" /></div><span class="gm-name" style="color: #b23a6c">Guimauve</span><span class="gm-use">Chatons</span></div>
+      <div class="gm-item" id="gm-3"><div class="gm-disc" style="background: #d9e4f7"><img src="assets/moussaillon.png" alt="" width="512" height="512" /></div><span class="gm-name" style="color: #22407a">Moussaillon</span><span class="gm-use">Parquet</span></div>
+      <div class="gm-item" id="gm-4"><div class="gm-disc" style="background: #ffdcd6"><img src="assets/flocon.png" alt="" width="512" height="512" /></div><span class="gm-name" style="color: #b3261e">Flocon</span><span class="gm-use">Hiver</span></div>
+      <div class="gm-item" id="gm-5"><div class="gm-disc" style="background: #e6f7bd"><img src="assets/neon.png" alt="" width="512" height="512" /></div><span class="gm-name" style="color: #3f5c00">Néon</span><span class="gm-use">Chats sportifs</span></div>
+      <div class="gm-item" id="gm-6"><div class="gm-disc" style="background: #f5e7d2"><img src="assets/sieste.png" alt="" width="512" height="512" /></div><span class="gm-name" style="color: #7a4622">Douce Sieste</span><span class="gm-use">Chats seniors</span></div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+      ["#gm-w1", "#gm-w2", "#gm-w3", "#gm-w4", "#gm-w5"].forEach((w, k) =>
+        tl.fromTo(w, { opacity: 0, filter: "blur(10px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.16, ease: "power2.out" }, 0.1 + k * 0.08)
+      );
+      for (let k = 1; k <= 6; k++) {
+        tl.fromTo("#gm-" + k, { y: 260, opacity: 0, rotation: k % 2 ? -8 : 8 }, { y: 0, opacity: 1, rotation: 0, duration: 0.55, ease: "back.out(1.5)" }, 0.3 + k * 0.07);
+      }
+      // Sortie : les paires se resserrent vers le centre et s'effacent dans un flou
+      for (let k = 1; k <= 6; k++) {
+        tl.fromTo("#gm-" + k, { x: 0, scale: 1, opacity: 1, filter: "blur(0px)" }, { x: (3.5 - k) * 290, scale: 0.4, opacity: 0, filter: "blur(12px)", duration: 0.35, ease: "power3.in", immediateRender: false }, 2.6);
+      }
+      tl.fromTo("#gm-title", { opacity: 1, filter: "blur(0px)" }, { opacity: 0, filter: "blur(10px)", duration: 0.2, ease: "power2.in" }, 2.62);
+      window.__timelines["gammes"] = tl;
+    })();
+  </script>
+</template>

@@ -1,0 +1,13 @@
+{
+  "name": "agripatte-site",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node build.mjs",
+    "build:github": "node build.mjs --github",
+    "photos": "node tools/photos.mjs",
+    "images": "node tools/images.mjs",
+    "motion": "node tools/motion.mjs",
+    "preview": "python3 -m http.server 8090 --directory site"
+  }
+}

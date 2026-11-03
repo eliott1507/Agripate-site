@@ -1,0 +1,14 @@
+{
+  "name": "Agripatte – Chaussettes antidérapantes pour chat",
+  "short_name": "Agripatte",
+  "lang": "fr",
+  "start_url": "/",
+  "display": "browser",
+  "background_color": "#fff6ea",
+  "theme_color": "#fff6ea",
+  "icons": [
+    { "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml" },
+    { "src": "/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" },
+    { "src": "/assets/img/logo-agripatte-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}

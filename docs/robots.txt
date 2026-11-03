@@ -1,0 +1,7 @@
+# Tout le site est ouvert à l'exploration, CSS et JavaScript compris (Google en a besoin pour afficher les pages).
+# Le panier, la commande et la page 404 portent une balise noindex : ils ne doivent pas être bloqués ici,
+# sinon Google ne verrait pas cette balise.
+User-agent: *
+Allow: /
+
+Sitemap: https://agripatte.fr/sitemap.xml

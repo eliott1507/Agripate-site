@@ -1,0 +1,63 @@
+<template>
+  <style>
+    @font-face { font-family: "Fredoka"; src: url("assets/fonts/fredoka.woff2") format("woff2"); font-weight: 300 700; }
+    #root { position: absolute; inset: 0; overflow: hidden; background: #fff6ea; font-family: "Fredoka", sans-serif; }
+    #pc-stage { position: absolute; inset: 0; transform-origin: 0 0; }
+    #pc-floor { position: absolute; left: 0; top: 690px; width: 1920px; height: 390px; }
+    #pc-shadow { position: absolute; left: 1250px; top: 735px; width: 470px; height: 60px; border-radius: 50%; background: radial-gradient(closest-side, rgba(59, 42, 38, 0.3), rgba(59, 42, 38, 0)); }
+    #pc-pair { position: absolute; left: 1180px; top: 245px; width: 560px; height: 560px; transform-origin: 50% 92%; }
+    #pc-pair img { width: 100%; height: 100%; display: block; }
+    #pc-ring { position: absolute; left: 1374px; top: 573px; width: 240px; height: 240px; }
+    #pc-title { position: absolute; left: 150px; top: 150px; width: 820px; font-weight: 700; font-size: 104px; line-height: 1.04; letter-spacing: -0.015em; color: #3b2a26; }
+    #pc-title span { display: inline-block; margin-right: 0.22em; }
+    #pc-punch { position: absolute; left: 150px; top: 540px; padding: 22px 40px 26px; border-radius: 999px; background: #d9481f; color: #ffffff; font-weight: 700; font-size: 84px; line-height: 1; box-shadow: 0 9px 0 #a8361a; white-space: nowrap; }
+    #pc-flood { position: absolute; inset: 0; background: #ffe3d6; clip-path: circle(0% at 1350px 560px); }
+  </style>
+  <div id="root" data-composition-id="picots" data-width="1920" data-height="1080">
+    <div id="pc-stage">
+      <svg id="pc-floor" viewBox="0 0 1920 390" width="1920" height="390" aria-hidden="true">
+        <defs>
+          <linearGradient id="pc-wood" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e2b382" /><stop offset="1" stop-color="#cf9a67" /></linearGradient>
+        </defs>
+        <rect width="1920" height="390" fill="url(#pc-wood)" />
+        <rect width="1920" height="16" fill="#f0dccb" />
+        <path d="M0 120h1920M0 250h1920" stroke="#b9824f" stroke-width="5" opacity="0.6" />
+        <path d="M340 16v104M1080 16v104M1700 16v104M120 120v130M780 120v130M1420 120v130M520 250v140M1220 250v140M1860 250v140" stroke="#b9824f" stroke-width="5" opacity="0.6" />
+        <g fill="#ffffff" opacity="0.45" transform="translate(-160 0)"><rect x="150" y="56" width="300" height="10" rx="5" /><rect x="1260" y="176" width="380" height="10" rx="5" /><rect x="600" y="306" width="240" height="10" rx="5" /><rect x="1580" y="60" width="160" height="8" rx="4" /></g>
+      </svg>
+      <div id="pc-shadow"></div>
+      <div id="pc-pair"><img src="assets/moussaillon.png" alt="" width="512" height="512" /></div>
+      <svg id="pc-ring" viewBox="0 0 240 240" width="240" height="240" aria-hidden="true">
+        <circle id="pc-circle" cx="120" cy="120" r="104" fill="none" stroke="#ff7a59" stroke-width="7" stroke-linecap="round" stroke-dasharray="18 16" />
+      </svg>
+    </div>
+    <h2 id="pc-title"><span id="pc-w1">Avec</span><span id="pc-w2">des</span><span id="pc-w3">picots</span><span id="pc-w4">en</span><span id="pc-w5">silicone…</span></h2>
+    <p id="pc-punch">ça accroche !</p>
+    <div id="pc-flood"></div>
+  </div>
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+      // La paire Moussaillon tombe sur le parquet et s'écrase un peu à l'atterrissage
+      tl.fromTo("#pc-pair", { y: -900, rotation: 12 }, { y: 0, rotation: -3, duration: 0.42, ease: "power2.in" }, 0.05);
+      tl.fromTo("#pc-shadow", { scale: 0.3, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.42, ease: "power2.in" }, 0.05);
+      tl.fromTo("#pc-pair", { scaleX: 1, scaleY: 1 }, { scaleX: 1.12, scaleY: 0.88, duration: 0.07, ease: "power2.out", immediateRender: false }, 0.47);
+      tl.fromTo("#pc-pair", { scaleX: 1.12, scaleY: 0.88, rotation: -3 }, { scaleX: 1, scaleY: 1, rotation: 0, duration: 0.45, ease: "elastic.out(1, 0.45)", immediateRender: false }, 0.54);
+
+      ["#pc-w1", "#pc-w2", "#pc-w3", "#pc-w4", "#pc-w5"].forEach((w, k) =>
+        tl.fromTo(w, { opacity: 0.35, color: "#a99183" }, { opacity: 1, color: "#3b2a26", duration: 0.14, ease: "power1.out" }, 0.55 + k * 0.08)
+      );
+
+      // Gros plan sur les picots (la scène entière avance, le titre reste en place)
+      tl.fromTo("#pc-stage", { x: 0, y: 0, scale: 1 }, { x: 1350 - 1494 * 1.5, y: 560 - 693 * 1.5, scale: 1.5, duration: 0.8, ease: "power2.inOut" }, 1.5);
+      tl.fromTo("#pc-ring", { scale: 0, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.35, ease: "back.out(1.8)" }, 2.25);
+      tl.fromTo("#pc-circle", { rotation: 0, svgOrigin: "120 120" }, { rotation: 60, svgOrigin: "120 120", duration: 1.9, ease: "none" }, 2.25);
+      tl.fromTo("#pc-punch", { scale: 0.3, opacity: 0, rotation: -10 }, { scale: 1, opacity: 1, rotation: -3, duration: 0.4, ease: "back.out(1.7)" }, 2.45);
+
+      // Inondation de couleur depuis les picots : on passe à la gamme complète
+      tl.fromTo("#pc-flood", { clipPath: "circle(0px at 1350px 560px)" }, { clipPath: "circle(1700px at 1350px 560px)", duration: 0.45, ease: "power2.inOut" }, 3.75);
+
+      window.__timelines["picots"] = tl;
+    })();
+  </script>
+</template>
