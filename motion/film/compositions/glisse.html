@@ -1,0 +1,62 @@
+<template>
+  <style>
+    @font-face { font-family: "Fredoka"; src: url("assets/fonts/fredoka.woff2") format("woff2"); font-weight: 300 700; }
+    #root { position: absolute; inset: 0; overflow: hidden; background: #fff6ea; font-family: "Fredoka", sans-serif; }
+    #gl-floor { position: absolute; left: 0; top: 690px; width: 1920px; height: 390px; }
+    #gl-title { position: absolute; left: 150px; top: 150px; width: 1300px; font-weight: 700; font-size: 132px; line-height: 1.02; letter-spacing: -0.015em; color: #3b2a26; }
+    #gl-title span { display: inline-block; margin-right: 0.22em; }
+    #gl-title .accent { color: #d9481f; }
+    #gl-track { position: absolute; left: 0; top: 760px; width: 0; height: 0; }
+    #gl-mover { position: absolute; left: 0; top: 0; width: 0; height: 0; }
+    #gl-paw { position: absolute; left: -130px; top: -130px; width: 260px; height: 260px; }
+    #gl-streaks { position: absolute; left: -720px; top: -70px; width: 560px; height: 140px; transform-origin: 100% 50%; }
+    #gl-streaks i { position: absolute; right: 0; height: 12px; border-radius: 12px; background: linear-gradient(90deg, rgba(59, 42, 38, 0), rgba(59, 42, 38, 0.35)); }
+    #gl-shine { position: absolute; left: 0; top: 0; width: 1920px; height: 390px; }
+  </style>
+  <div id="root" data-composition-id="glisse" data-width="1920" data-height="1080">
+    <svg id="gl-floor" viewBox="0 0 1920 390" width="1920" height="390" aria-hidden="true">
+      <defs>
+        <linearGradient id="gl-wood" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e2b382" /><stop offset="1" stop-color="#cf9a67" /></linearGradient>
+      </defs>
+      <rect width="1920" height="390" fill="url(#gl-wood)" />
+      <rect width="1920" height="16" fill="#f0dccb" />
+      <path d="M0 120h1920M0 250h1920" stroke="#b9824f" stroke-width="5" opacity="0.6" />
+      <path d="M340 16v104M1080 16v104M1700 16v104M120 120v130M780 120v130M1420 120v130M520 250v140M1220 250v140M1860 250v140" stroke="#b9824f" stroke-width="5" opacity="0.6" />
+      <g id="gl-gloss" fill="#ffffff" opacity="0.45"><rect x="150" y="56" width="300" height="10" rx="5" /><rect x="1260" y="176" width="380" height="10" rx="5" /><rect x="600" y="306" width="240" height="10" rx="5" /><rect x="1580" y="60" width="160" height="8" rx="4" /></g>
+    </svg>
+    <h2 id="gl-title"><span id="gl-w1">Sur</span><span id="gl-w2">le</span><span id="gl-w3">parquet,</span><br /><span id="gl-w4" class="accent">ça</span><span id="gl-w5" class="accent">glisse.</span></h2>
+    <div id="gl-track" data-layout-allow-overflow>
+      <div id="gl-mover">
+        <div id="gl-streaks"><i style="top: 20px; width: 420px"></i><i style="top: 64px; width: 560px"></i><i style="top: 108px; width: 360px"></i></div>
+        <svg id="gl-paw" viewBox="0 0 100 100" width="260" height="260" aria-hidden="true">
+          <g fill="#fffaf3" stroke="#3b2a26" stroke-width="2.6"><ellipse cx="17" cy="38" rx="11" ry="13.5" transform="rotate(-24 17 38)" /><ellipse cx="37" cy="19" rx="11.5" ry="14.5" transform="rotate(-8 37 19)" /><ellipse cx="63" cy="19" rx="11.5" ry="14.5" transform="rotate(8 63 19)" /><ellipse cx="83" cy="38" rx="11" ry="13.5" transform="rotate(24 83 38)" /><path d="M50 42c-17 0-31 15-31 29 0 11 9 18 19 16 4-1 8-3 12-3s8 2 12 3c10 2 19-5 19-16 0-14-14-29-31-29z" /></g>
+          <g fill="#f29bb0"><ellipse cx="17" cy="38" rx="6" ry="8" transform="rotate(-24 17 38)" /><ellipse cx="37" cy="19" rx="6.5" ry="8.5" transform="rotate(-8 37 19)" /><ellipse cx="63" cy="19" rx="6.5" ry="8.5" transform="rotate(8 63 19)" /><ellipse cx="83" cy="38" rx="6" ry="8" transform="rotate(24 83 38)" /><path d="M50 52c-11 0-20 10-20 18 0 7 6 11 12 10 3-1 5-2 8-2s5 1 8 2c6 1 12-3 12-10 0-8-9-18-20-18z" /></g>
+        </svg>
+      </div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+      // Titre : mot à mot, flou → net, sans déplacement
+      ["#gl-w1", "#gl-w2", "#gl-w3"].forEach((w, k) => tl.fromTo(w, { opacity: 0, filter: "blur(10px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.16, ease: "power2.out" }, 0.25 + k * 0.08));
+      ["#gl-w4", "#gl-w5"].forEach((w, k) => tl.fromTo(w, { opacity: 0, filter: "blur(10px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.16, ease: "power2.out" }, 0.75 + k * 0.08));
+
+      // La patte arrive en trombe, ne trouve aucune prise et dérape jusqu'au bout du parquet
+      tl.fromTo("#gl-mover", { x: -320 }, { x: 1180, duration: 1.7, ease: "power2.out" }, 0.9);
+      tl.fromTo("#gl-paw", { rotation: 90 }, { rotation: 118, duration: 0.5, ease: "sine.inOut" }, 0.9);
+      tl.fromTo("#gl-paw", { rotation: 118 }, { rotation: 70, duration: 0.55, ease: "sine.inOut", immediateRender: false }, 1.4);
+      tl.fromTo("#gl-paw", { rotation: 70 }, { rotation: 104, duration: 0.6, ease: "sine.inOut", immediateRender: false }, 1.95);
+      tl.fromTo("#gl-paw", { rotation: 104 }, { rotation: 90, duration: 0.5, ease: "power2.out", immediateRender: false }, 2.55);
+      tl.fromTo("#gl-streaks", { scaleX: 0, opacity: 0 }, { scaleX: 1, opacity: 1, duration: 0.3, ease: "power2.out" }, 0.95);
+      tl.fromTo("#gl-streaks", { scaleX: 1, opacity: 1 }, { scaleX: 0.15, opacity: 0, duration: 0.9, ease: "power2.in", immediateRender: false }, 1.8);
+      tl.fromTo("#gl-gloss", { x: 0 }, { x: -160, duration: 4.2, ease: "none" }, 0);
+
+      // Sortie : le titre se dissout, la patte file hors champ
+      tl.fromTo("#gl-title", { opacity: 1, filter: "blur(0px)" }, { opacity: 0, filter: "blur(10px)", duration: 0.22, ease: "power2.in" }, 3.8);
+      tl.fromTo("#gl-track", { x: 0 }, { x: 900, duration: 0.35, ease: "power3.in" }, 3.8);
+
+      window.__timelines["glisse"] = tl;
+    })();
+  </script>
+</template>

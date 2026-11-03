@@ -1,0 +1,427 @@
+{
+  "cats": {
+    "Enfilage": [
+      "#ffe3d6",
+      "#a23a1c"
+    ],
+    "Chatons": [
+      "#ffdbe7",
+      "#b23a6c"
+    ],
+    "Seniors": [
+      "#f5e7d2",
+      "#7a4622"
+    ],
+    "Maison": [
+      "#d9e4f7",
+      "#22407a"
+    ],
+    "Entretien": [
+      "#e6f7bd",
+      "#3f5c00"
+    ]
+  },
+  "list": [
+    {
+      "id": "enfiler",
+      "cat": "Enfilage",
+      "read": "5 min",
+      "date": "2026-10-14",
+      "gamme": "essentielles",
+      "title": "Comment enfiler des chaussettes à un chat qui n’est pas d’accord",
+      "excerpt": "Le bon moment, la bonne prise, la bonne friandise : notre méthode en douceur, testée sur des chats très têtus.",
+      "blocks": [
+        {
+          "t": "p",
+          "x": "Soyons honnêtes : aucun chat ne s’est jamais réveillé en se disant « tiens, si je mettais des chaussettes ». La première fois, il va secouer les pattes, marcher comme un astronaute sur la Lune et te regarder avec un air de profonde trahison. C’est normal, et ça passe vite."
+        },
+        {
+          "t": "p",
+          "x": "Chez Agripatte, on a enfilé des centaines de paires à nos testeurs, dont certains ont un caractère bien trempé. Voici la méthode qui marche le mieux."
+        },
+        {
+          "t": "h",
+          "x": "Choisis le bon moment"
+        },
+        {
+          "t": "p",
+          "x": "Un chat qui vient de jouer ou qui guette un pigeon par la fenêtre n’a aucune envie qu’on lui touche les pattes. Vise plutôt le moment où il est calme, ou franchement mou : après le repas, au réveil d’une sieste, quand il ronronne sur tes genoux."
+        },
+        {
+          "t": "h",
+          "x": "La méthode en 4 étapes"
+        },
+        {
+          "t": "steps",
+          "items": [
+            [
+              "Habitue-le au contact",
+              "Pendant quelques jours, masse doucement ses pattes quand il est détendu, sans rien enfiler. Une friandise à chaque fois."
+            ],
+            [
+              "Une patte à la fois",
+              "Tiens la patte délicatement au-dessus du poignet. Glisse la chaussette, picots vers le sol, jusqu’à ce que le talon soit bien en place."
+            ],
+            [
+              "Vérifie le revers",
+              "Il doit être à plat, sans pli. Tu dois pouvoir glisser un doigt entre la chaussette et la patte : si ce n’est pas le cas, c’est trop serré."
+            ],
+            [
+              "Récompense et distrais",
+              "Friandise, jouet, petite séance de canne à pêche. Le but : qu’il pense à autre chose qu’à ses pieds."
+            ]
+          ]
+        },
+        {
+          "t": "tip",
+          "x": "Commence par les deux pattes avant seulement. Ce sont elles qui glissent le plus quand il freine, et il s’y habituera plus vite qu’avec les quatre d’un coup."
+        },
+        {
+          "t": "h",
+          "x": "Combien de temps la première fois ?"
+        },
+        {
+          "t": "p",
+          "x": "Cinq minutes suffisent. Retire-les avant qu’il ne commence à s’agacer, pour qu’il garde un bon souvenir. Rallonge un peu chaque jour. En une semaine, la plupart des chats les portent sans même y penser."
+        },
+        {
+          "t": "h",
+          "x": "Et s’il refuse vraiment ?"
+        },
+        {
+          "t": "p",
+          "x": "Certains chats ne s’y feront jamais, et ce n’est pas grave. Ne le force pas et ne le tiens pas immobilisé : tu risquerais de le stresser durablement. Réessaie quelques jours plus tard, ou concentre-toi sur les zones de la maison qui glissent le plus avec un tapis."
+        }
+      ]
+    },
+    {
+      "id": "senior",
+      "cat": "Seniors",
+      "read": "4 min",
+      "date": "2026-10-02",
+      "gamme": "sieste",
+      "title": "Mon chat âgé ne saute plus sur le canapé : que faire ?",
+      "excerpt": "Un bon appui au sol change beaucoup de choses. Nos astuces pour l’aider à reprendre confiance.",
+      "blocks": [
+        {
+          "t": "p",
+          "x": "Il montait sur le canapé d’un bond, et maintenant il s’assoit devant, regarde, hésite… puis renonce. Si ton chat a plus de dix ans, ce petit moment de doute te dit sûrement quelque chose."
+        },
+        {
+          "t": "h",
+          "x": "Pourquoi il hésite"
+        },
+        {
+          "t": "p",
+          "x": "Avec l’âge, les muscles fondent un peu et les articulations deviennent raides. Pour sauter, un chat a besoin de pousser fort sur ses pattes arrière. Si le sol glisse au moment de l’impulsion, il le sent, et il préfère ne pas prendre le risque."
+        },
+        {
+          "t": "tip",
+          "x": "Si ton chat boite, se lèche une patte en particulier ou change brusquement d’habitudes, parles-en à ton vétérinaire. Une raideur peut se soulager, mais il faut d’abord savoir d’où elle vient."
+        },
+        {
+          "t": "h",
+          "x": "Lui redonner un bon appui"
+        },
+        {
+          "t": "ul",
+          "items": [
+            "Mets un tapis antidérapant au pied de ses endroits préférés : canapé, lit, rebord de fenêtre.",
+            "Installe une marche intermédiaire : un pouf, un coussin ferme ou une petite boîte solide.",
+            "Fais-lui porter des chaussettes antidérapantes à revers souple, qui ne serrent pas les pattes.",
+            "Garde ses griffes à une longueur raisonnable : trop longues, elles le font glisser sur le parquet."
+          ]
+        },
+        {
+          "t": "h",
+          "x": "Le confort compte aussi"
+        },
+        {
+          "t": "p",
+          "x": "Les vieux chats ont souvent froid aux pattes, surtout sur du carrelage. Une maille douce, en bambou ou en laine, les garde au chaud sans faire transpirer les coussinets. Et un chat qui a chaud bouge plus volontiers."
+        },
+        {
+          "t": "p",
+          "x": "Avec un peu d’aide, beaucoup de chats âgés retrouvent leur place sur le canapé. Et toi, ta bouillotte à poils."
+        }
+      ]
+    },
+    {
+      "id": "sols",
+      "cat": "Maison",
+      "read": "3 min",
+      "date": "2026-09-23",
+      "gamme": "moussaillon",
+      "title": "Parquet, carrelage, escaliers : les sols qui glissent le plus",
+      "excerpt": "On a fait le tour de la maison pour trouver où les pattes dérapent, et comment y remédier.",
+      "blocks": [
+        {
+          "t": "p",
+          "x": "Les coussinets d’un chat sont faits pour accrocher sur la terre, l’herbe ou l’écorce. Sur les sols lisses de nos maisons, ils ont beaucoup moins de prise. Voici, du plus traître au plus gentil, les sols qu’on a testés avec nos chats."
+        },
+        {
+          "t": "h",
+          "x": "1. Le parquet vitrifié ou ciré"
+        },
+        {
+          "t": "p",
+          "x": "Le champion toutes catégories. C’est là qu’on voit les fameuses sorties de route dans les virages. Le pire, c’est juste après l’entretien, quand le parquet vient d’être ciré."
+        },
+        {
+          "t": "h",
+          "x": "2. Le carrelage poli"
+        },
+        {
+          "t": "p",
+          "x": "Presque aussi glissant, et froid en plus. Les grands carreaux brillants d’une cuisine ou d’une salle de bains sont redoutables, surtout quand il y a un peu d’eau par terre."
+        },
+        {
+          "t": "h",
+          "x": "3. Les escaliers en bois"
+        },
+        {
+          "t": "p",
+          "x": "Moins glissants qu’un parquet, mais plus dangereux : une glissade dans une descente peut finir en chute. Méfie-toi surtout des marches avec un nez arrondi."
+        },
+        {
+          "t": "h",
+          "x": "4. Le stratifié et le vinyle"
+        },
+        {
+          "t": "p",
+          "x": "Ça dépend beaucoup de la finition. Les modèles imitation bois avec un léger relief accrochent plutôt bien, les modèles lisses beaucoup moins."
+        },
+        {
+          "t": "tip",
+          "x": "Le test de la chaussette : glisse sur ton sol en chaussettes. Si toi, tu glisses, ton chat aussi."
+        },
+        {
+          "t": "h",
+          "x": "Les solutions"
+        },
+        {
+          "t": "ul",
+          "items": [
+            "Des tapis aux endroits stratégiques : sortie de la gamelle, bas des escaliers, couloirs où il court.",
+            "Des bandes antidérapantes transparentes sur les marches.",
+            "Des chaussettes à semelle renforcée pour les moments de folie."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "chaton",
+      "cat": "Chatons",
+      "read": "3 min",
+      "date": "2026-09-09",
+      "gamme": "guimauve",
+      "title": "À quel âge un chaton peut-il porter des chaussettes ?",
+      "excerpt": "Taille, durée, matière : le guide pour les toutes petites pattes.",
+      "blocks": [
+        {
+          "t": "p",
+          "x": "Un chaton, c’est une boule d’énergie qui ne sait pas encore freiner. Il court, glisse, se cogne dans le canapé et recommence aussitôt. Faut-il lui mettre des chaussettes pour autant ? Pas forcément tout de suite."
+        },
+        {
+          "t": "h",
+          "x": "Attends qu’il ait au moins 4 mois"
+        },
+        {
+          "t": "p",
+          "x": "Avant cet âge, ses pattes grandissent très vite et il apprend à se servir de ses coussinets. Il a besoin de sentir le sol. À partir de 4 mois, quand il pèse au moins 1,5 kg, tu peux commencer à lui faire essayer."
+        },
+        {
+          "t": "h",
+          "x": "Bien choisir la taille"
+        },
+        {
+          "t": "p",
+          "x": "Prends une taille S, faite pour les chats de 1 à 3 kg. Une chaussette trop grande tourne autour de la patte, et les picots finissent sur le dessus : ça ne sert plus à rien."
+        },
+        {
+          "t": "tip",
+          "x": "Les chatons grandissent vite : revérifie la taille tous les mois. Si la chaussette laisse une marque sur la patte quand tu l’enlèves, c’est qu’elle est devenue trop petite."
+        },
+        {
+          "t": "h",
+          "x": "Des séances très courtes"
+        },
+        {
+          "t": "p",
+          "x": "Quelques minutes, pendant une séance de jeu, et c’est tout. Le but est surtout qu’il s’habitue au contact. Ne le laisse jamais seul avec des chaussettes : un chaton curieux peut essayer de les mâchouiller."
+        },
+        {
+          "t": "h",
+          "x": "Et s’il les mord ?"
+        },
+        {
+          "t": "p",
+          "x": "C’est très fréquent au début. Détourne son attention avec un jouet, et retire-les s’il insiste. Il finira par s’en désintéresser."
+        }
+      ]
+    },
+    {
+      "id": "lavage",
+      "cat": "Entretien",
+      "read": "2 min",
+      "date": "2026-08-28",
+      "gamme": "neon",
+      "title": "Laver ses chaussettes sans abîmer les picots",
+      "excerpt": "Température, sens du lavage, séchage : trois gestes pour qu’elles durent longtemps.",
+      "blocks": [
+        {
+          "t": "p",
+          "x": "Les picots en silicone, c’est ce qui fait tout le travail. S’ils s’usent ou se décollent, ta chaussette redevient une simple chaussette. Bonne nouvelle : il suffit de trois gestes pour les garder en forme."
+        },
+        {
+          "t": "h",
+          "x": "Les 3 gestes"
+        },
+        {
+          "t": "steps",
+          "items": [
+            [
+              "Retourne-les",
+              "Lave toujours les chaussettes à l’envers. Les picots frottent ainsi contre le tissu et pas contre le tambour."
+            ],
+            [
+              "30 °C maximum",
+              "Un cycle délicat à 30 °C suffit largement. Au-delà, le silicone durcit et finit par craqueler."
+            ],
+            [
+              "Pas de sèche-linge",
+              "Laisse-les sécher à plat, à l’air libre. La chaleur du sèche-linge est le pire ennemi des picots."
+            ]
+          ]
+        },
+        {
+          "t": "tip",
+          "x": "Glisse-les dans un filet de lavage : elles ne se perdront plus au fond de la machine (et ne finiront pas dans ta housse de couette)."
+        },
+        {
+          "t": "h",
+          "x": "À quelle fréquence ?"
+        },
+        {
+          "t": "p",
+          "x": "Une fois par semaine si ton chat les porte tous les jours, plus souvent s’il a la mauvaise idée de marcher dans sa gamelle. Avoir deux lots qui tournent, c’est le plus pratique."
+        },
+        {
+          "t": "h",
+          "x": "Quand les remplacer ?"
+        },
+        {
+          "t": "p",
+          "x": "Quand les picots sont lisses et ne freinent plus, ou quand la maille se détend et que la chaussette ne tient plus. En moyenne, une paire bien entretenue dure plusieurs mois."
+        }
+      ]
+    },
+    {
+      "id": "erreurs",
+      "cat": "Enfilage",
+      "read": "4 min",
+      "date": "2026-08-12",
+      "gamme": "essentielles",
+      "title": "Les 5 erreurs à éviter les premières fois",
+      "excerpt": "On les a toutes faites, pour que tu n’aies pas à les faire.",
+      "blocks": [
+        {
+          "t": "p",
+          "x": "Quand on a reçu nos tout premiers prototypes, on était tellement contents qu’on a enchaîné les gaffes. Moustache s’en souvient encore. Voici ce qu’on a appris."
+        },
+        {
+          "t": "h",
+          "x": "1. Les mettre toutes les quatre d’un coup"
+        },
+        {
+          "t": "p",
+          "x": "Quatre pattes inconnues en même temps, c’est trop. Commence par les deux pattes avant, puis ajoute les autres au bout de quelques jours."
+        },
+        {
+          "t": "h",
+          "x": "2. Insister quand il se débat"
+        },
+        {
+          "t": "p",
+          "x": "Si ton chat se tortille, gronde ou sort les griffes, arrête tout. Tu réessaieras plus tard. Le forcer, c’est s’assurer qu’il fuira la prochaine fois qu’il verra une chaussette."
+        },
+        {
+          "t": "h",
+          "x": "3. Choisir une taille trop grande"
+        },
+        {
+          "t": "p",
+          "x": "« Comme ça, elle ne serrera pas. » Sauf qu’elle tourne, glisse et se retrouve picots vers le plafond. Pèse ton chat, et suis le guide des tailles."
+        },
+        {
+          "t": "h",
+          "x": "4. Les laisser toute la journée"
+        },
+        {
+          "t": "p",
+          "x": "Les coussinets ont besoin de respirer, et ton chat a besoin de faire ses griffes. Quelques heures par jour suffisent, et jamais la nuit."
+        },
+        {
+          "t": "h",
+          "x": "5. Oublier la récompense"
+        },
+        {
+          "t": "p",
+          "x": "Une friandise après chaque séance, c’est ce qui transforme « l’humain m’embête avec ses chaussettes » en « l’humain sort les chaussettes, il va y avoir du poulet »."
+        },
+        {
+          "t": "tip",
+          "x": "Garde les chaussettes dans un endroit où ton chat peut les sentir quelques jours avant de les essayer. Un objet familier est beaucoup moins inquiétant."
+        }
+      ]
+    },
+    {
+      "id": "hiver",
+      "cat": "Maison",
+      "read": "3 min",
+      "date": "2026-07-30",
+      "gamme": "flocon",
+      "title": "Sols froids en hiver : garder les pattes au chaud",
+      "excerpt": "Tapis, coins douillets, chaussettes en laine : comment aménager la maison quand il fait froid.",
+      "blocks": [
+        {
+          "t": "p",
+          "x": "Les chats adorent la chaleur : il n’y a qu’à voir ton chat suivre la tache de soleil d’une pièce à l’autre. En hiver, le carrelage froid peut le pousser à moins bouger, surtout s’il est âgé ou très mince."
+        },
+        {
+          "t": "h",
+          "x": "Repère les zones froides"
+        },
+        {
+          "t": "p",
+          "x": "Cuisine, salle de bains, entrée : ce sont souvent les pièces au carrelage le plus froid. Observe où ton chat évite de s’arrêter, ce sont sûrement ces endroits-là."
+        },
+        {
+          "t": "h",
+          "x": "Aménage des étapes douillettes"
+        },
+        {
+          "t": "ul",
+          "items": [
+            "Un tapis épais près de sa gamelle, pour qu’il ne mange pas les pattes sur le froid.",
+            "Un plaid sur son trajet préféré, entre le canapé et la fenêtre.",
+            "Un panier surélevé, loin des courants d’air.",
+            "Une bouillotte tiède sous une couverture, les jours vraiment froids."
+          ]
+        },
+        {
+          "t": "h",
+          "x": "Et les chaussettes ?"
+        },
+        {
+          "t": "p",
+          "x": "Une maille épaisse avec un peu de laine garde les coussinets au chaud et lui permet de traverser la cuisine sans y penser. Choisis-les toujours avec des picots : un sol froid est souvent aussi un sol glissant."
+        },
+        {
+          "t": "tip",
+          "x": "Ne laisse jamais ton chat dormir avec ses chaussettes près d’un radiateur ou d’une cheminée : il pourrait avoir trop chaud sans pouvoir s’en rendre compte."
+        }
+      ]
+    }
+  ]
+}

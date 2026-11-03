@@ -1,0 +1,49 @@
+<template>
+  <style>
+    @font-face { font-family: "Fredoka"; src: url("assets/fonts/fredoka.woff2") format("woff2"); font-weight: 300 700; }
+    #root { position: absolute; inset: 0; overflow: hidden; background: #ffe3d6; font-family: "Fredoka", sans-serif; }
+    #fn-logo { position: absolute; left: 610px; top: 250px; width: 700px; height: 200px; }
+    #fn-pill { position: absolute; inset: 0; border-radius: 999px; background: #3b2a26; color: #fff6ea; display: grid; place-items: center; font-weight: 700; font-size: 132px; line-height: 1; letter-spacing: 0.01em; }
+    #root .fn-ear { position: absolute; top: -40px; width: 0; height: 0; border-left: 30px solid transparent; border-right: 30px solid transparent; border-bottom: 52px solid #3b2a26; }
+    #fn-tagline { position: absolute; left: 0; right: 0; top: 520px; text-align: center; font-weight: 600; font-size: 64px; line-height: 1.1; color: #3b2a26; }
+    #fn-chips { position: absolute; left: 0; right: 0; top: 650px; display: flex; justify-content: center; gap: 24px; }
+    #root .fn-chip { padding: 18px 34px 20px; border-radius: 999px; background: #ffffff; font-weight: 600; font-size: 44px; line-height: 1; color: #3b2a26; box-shadow: 0 6px 0 #f2c2ad; white-space: nowrap; }
+    #root .fn-chip b { color: #e85d3c; font-weight: 700; }
+    #fn-url { position: absolute; left: 0; right: 0; top: 820px; text-align: center; font-family: "Nunito", sans-serif; font-weight: 800; font-size: 40px; color: #a23a1c; letter-spacing: 0.02em; }
+    #root .fn-paw { position: absolute; width: 120px; height: 120px; }
+  </style>
+  <div id="root" data-composition-id="fin" data-width="1920" data-height="1080">
+    <svg class="fn-paw" id="fn-p1" style="left: 150px; top: 140px" viewBox="0 0 100 100" aria-hidden="true"><use href="#fn-paw-shape" fill="#ffcbb6" /></svg>
+    <svg class="fn-paw" id="fn-p2" style="left: 1620px; top: 200px" viewBox="0 0 100 100" aria-hidden="true"><use href="#fn-paw-shape" fill="#c3d4f0" /></svg>
+    <svg class="fn-paw" id="fn-p3" style="left: 260px; top: 800px" viewBox="0 0 100 100" aria-hidden="true"><use href="#fn-paw-shape" fill="#ffb3c7" /></svg>
+    <svg class="fn-paw" id="fn-p4" style="left: 1540px; top: 820px" viewBox="0 0 100 100" aria-hidden="true"><use href="#fn-paw-shape" fill="#cfe89a" /></svg>
+    <div id="fn-logo">
+      <div id="fn-pill">Agripatte<span class="fn-ear" style="left: 70px"></span><span class="fn-ear" style="right: 70px"></span></div>
+    </div>
+    <p id="fn-tagline">Chaussettes antidérapantes pour chat</p>
+    <div id="fn-chips">
+      <span class="fn-chip" id="fn-c1">Dès <b>9,90 €</b> les 4</span>
+      <span class="fn-chip" id="fn-c2">Livraison offerte dès <b>35 €</b></span>
+    </div>
+    <p id="fn-url">agripatte.fr</p>
+    <svg width="0" height="0" style="position: absolute" aria-hidden="true">
+      <defs>
+        <g id="fn-paw-shape"><ellipse cx="17" cy="38" rx="9" ry="11.5" transform="rotate(-24 17 38)" /><ellipse cx="37" cy="19" rx="9.5" ry="12.5" transform="rotate(-8 37 19)" /><ellipse cx="63" cy="19" rx="9.5" ry="12.5" transform="rotate(8 63 19)" /><ellipse cx="83" cy="38" rx="9" ry="11.5" transform="rotate(24 83 38)" /><path d="M50 45c-15 0-28 14-28 27 0 10 8 16 17 14 4-1 7-3 11-3s7 2 11 3c9 2 17-4 17-14 0-13-13-27-28-27z" /></g>
+      </defs>
+    </svg>
+  </div>
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+      // Le logo naît du point où les paires se sont rejointes
+      tl.fromTo("#fn-pill", { scale: 0.05, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.5, ease: "back.out(1.6)" }, 0);
+      tl.fromTo("#fn-tagline", { opacity: 0, filter: "blur(10px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.2, ease: "power2.out" }, 0.35);
+      tl.fromTo(["#fn-c1", "#fn-c2"], { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 0.4, ease: "expo.out", stagger: 0.08 }, 0.38);
+      tl.fromTo("#fn-url", { opacity: 0 }, { opacity: 1, duration: 0.25, ease: "power1.out" }, 0.5);
+      ["#fn-p1", "#fn-p2", "#fn-p3", "#fn-p4"].forEach((p, k) =>
+        tl.fromTo(p, { scale: 0, rotation: k % 2 ? 40 : -40 }, { scale: 1, rotation: k % 2 ? 14 : -18, duration: 0.4, ease: "back.out(2)" }, 0.2 + k * 0.07)
+      );
+      window.__timelines["fin"] = tl;
+    })();
+  </script>
+</template>
