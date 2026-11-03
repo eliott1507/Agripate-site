@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&amp;family=Nunito:wght@400;600;700;800&amp;display=swap">
+<script src="./catalogue.js"></script>
+<script src="./fun.js"></script>
+<script src="./image-slot.js"></script>
+<style>*,*::before,*::after{box-sizing:border-box}body{margin:0;background:#fff6ea;color:#3b2a26;font-family:'Nunito',system-ui,sans-serif}a{color:#e85d3c}a:hover{color:#b8401f}a:focus-visible,button:focus-visible{outline:3px solid #ff7a59;outline-offset:3px}</style>
+</helmet>
+<div style="min-height:100vh;background:#fff6ea;color:#3b2a26;font-family:'Nunito',system-ui,sans-serif;overflow-x:hidden">
+  <dc-import name="SiteHeader" active="conseils" hint-size="100%,90px"></dc-import>
+
+  <section style="padding:24px clamp(16px,4vw,48px) 0;display:flex;flex-direction:column;gap:16px">
+    <h1 style="margin:0;font-family:'Fredoka',sans-serif;font-weight:700;font-size:clamp(44px,6vw,72px);line-height:1">Le coin des conseils</h1>
+    <p style="margin:0;font-size:19px;line-height:1.5;max-width:52ch;text-wrap:pretty">Enfilage, chatons, chats âgés, entretien : tout ce qu’on a appris en mettant des chaussettes à des chats qui n’étaient pas toujours d’accord.</p>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px">
+      <sc-for list="{{ cats }}" as="c" hint-placeholder-count="6">
+        <button onClick="{{ c.select }}" data-fun="pop" style="all:unset;cursor:pointer;padding:10px 18px;border-radius:999px;border:2px solid #3b2a26;font-weight:800;font-size:15px;background:{{ c.bg }};color:{{ c.fg }}">{{ c.label }}</button>
+      </sc-for>
+    </div>
+  </section>
+
+  <sc-if value="{{ showFeatured }}" hint-placeholder-val="{{ true }}">
+    <section style="padding:32px clamp(16px,4vw,48px) 0">
+      <article style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr));gap:clamp(20px,3vw,40px);align-items:center;padding:clamp(14px,2vw,20px);border-radius:40px;background:#ffe3d6">
+        <div style="position:relative;aspect-ratio:4/3"><image-slot id="conseil-{{ f.id }}" shape="rounded" radius="30" placeholder="Photo · {{ f.cat }}"></image-slot></div>
+        <div style="display:flex;flex-direction:column;gap:14px;padding:clamp(8px,2vw,24px)">
+          <span style="display:flex;gap:8px;flex-wrap:wrap"><span style="padding:6px 14px;border-radius:999px;background:#fff;color:#a23a1c;font-weight:800;font-size:13px">À la une</span><span style="padding:6px 14px;border-radius:999px;border:2px solid #a23a1c;color:#a23a1c;font-weight:800;font-size:13px">{{ f.cat }}</span></span>
+          <h2 style="margin:0;font-family:'Fredoka',sans-serif;font-weight:700;font-size:clamp(30px,3.5vw,44px);line-height:1.05;text-wrap:balance">{{ f.title }}</h2>
+          <p style="margin:0;font-size:18px;line-height:1.5;text-wrap:pretty">{{ f.excerpt }}</p>
+          <span style="display:flex;gap:16px;align-items:center;flex-wrap:wrap;margin-top:4px">
+            <a href="#" style="display:inline-flex;align-items:center;padding:0 24px;height:52px;border-radius:999px;background:#ff7a59;color:#fff;font-family:'Fredoka',sans-serif;font-weight:600;font-size:18px;text-decoration:none;box-shadow:0 4px 0 #c9502f" style-hover="background:#ff6a45;color:#fff">Lire l’article →</a>
+            <span style="font-weight:700;font-size:15px">{{ f.read }} de lecture</span>
+          </span>
+        </div>
+      </article>
+    </section>
+  </sc-if>
+
+  <section style="padding:32px clamp(16px,4vw,48px) 0">
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:20px">
+      <sc-for list="{{ posts }}" as="p" hint-placeholder-count="6">
+        <article style="display:flex;flex-direction:column;gap:12px;padding:12px 12px 22px;border-radius:32px;background:#fff;border:2px solid #f0dccb;transition:transform .2s" style-hover="transform:translateY(-4px) rotate(-0.6deg)">
+          <div style="position:relative;aspect-ratio:3/2"><image-slot id="conseil-{{ p.id }}" shape="rounded" radius="24" placeholder="Photo · {{ p.cat }}"></image-slot></div>
+          <span style="align-self:flex-start;margin:4px 10px 0;padding:5px 12px;border-radius:999px;font-weight:800;font-size:13px;background:{{ p.tint }};color:{{ p.deep }}">{{ p.cat }}</span>
+          <h3 style="margin:0 10px;font-family:'Fredoka',sans-serif;font-weight:600;font-size:22px;line-height:1.15;text-wrap:balance">{{ p.title }}</h3>
+          <p style="margin:0 10px;font-size:16px;line-height:1.5;text-wrap:pretty">{{ p.excerpt }}</p>
+          <span style="margin:0 10px;font-weight:800;font-size:14px;color:#a23a1c">{{ p.read }} · Lire →</span>
+        </article>
+      </sc-for>
+    </div>
+  </section>
+
+  <section style="position:relative;margin:56px clamp(16px,4vw,48px) 0;padding:clamp(28px,4vw,48px);border-radius:40px;background:#d9e4f7;display:flex;flex-wrap:wrap;gap:20px;align-items:center;justify-content:space-between;overflow:hidden">
+    <dc-import name="Paw" color="#c3d4f0" hint-size="130px,130px" style="position:absolute;right:28%;top:-30px;width:130px;height:130px;transform:rotate(-18deg)"></dc-import>
+    <div style="position:relative;display:flex;flex-direction:column;gap:8px;max-width:44ch">
+      <h2 style="margin:0;font-family:'Fredoka',sans-serif;font-weight:700;font-size:clamp(28px,3.5vw,40px);color:#22407a">Une question sur ton chat&nbsp;?</h2>
+      <p style="margin:0;font-size:17px">On a rassemblé les réponses aux questions qu’on nous pose le plus souvent.</p>
+    </div>
+    <a href="FAQ.dc.html" data-fun="paws" style="position:relative;display:inline-flex;align-items:center;padding:0 26px;height:58px;border-radius:999px;background:#22407a;color:#fff;font-family:'Fredoka',sans-serif;font-weight:600;font-size:19px;text-decoration:none" style-hover="background:#1a3263;color:#fff">Voir la FAQ →</a>
+  </section>
+
+  <dc-import name="SiteFooter" hint-size="100%,260px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const CATS = { 'Enfilage': ['#ffe3d6', '#a23a1c'], 'Chatons': ['#ffdbe7', '#b23a6c'], 'Seniors': ['#f5e7d2', '#7a4622'], 'Maison': ['#d9e4f7', '#22407a'], 'Entretien': ['#e6f7bd', '#3f5c00'] };
+const POSTS = [
+  { id: 'enfiler', cat: 'Enfilage', read: '5 min', title: 'Comment enfiler des chaussettes à un chat qui n’est pas d’accord', excerpt: 'Le bon moment, la bonne prise, la bonne friandise : notre méthode en douceur, testée sur des chats très têtus.' },
+  { id: 'senior', cat: 'Seniors', read: '4 min', title: 'Mon chat âgé ne saute plus sur le canapé : que faire ?', excerpt: 'Un bon appui au sol change beaucoup de choses. Nos astuces pour l’aider à reprendre confiance.' },
+  { id: 'sols', cat: 'Maison', read: '3 min', title: 'Parquet, carrelage, escaliers : les sols qui glissent le plus', excerpt: 'On a fait le tour de la maison pour trouver où les pattes dérapent, et comment y remédier.' },
+  { id: 'chaton', cat: 'Chatons', read: '3 min', title: 'À quel âge un chaton peut-il porter des chaussettes ?', excerpt: 'Taille, durée, matière : le guide pour les toutes petites pattes.' },
+  { id: 'lavage', cat: 'Entretien', read: '2 min', title: 'Laver ses chaussettes sans abîmer les picots', excerpt: 'Température, sens du lavage, séchage : trois gestes pour qu’elles durent longtemps.' },
+  { id: 'erreurs', cat: 'Enfilage', read: '4 min', title: 'Les 5 erreurs à éviter les premières fois', excerpt: 'Les laisser trop longtemps ou insister quand il se débat, par exemple. On les a toutes faites, pour que tu n’aies pas à les faire.' },
+  { id: 'hiver', cat: 'Maison', read: '3 min', title: 'Sols froids en hiver : garder les pattes au chaud', excerpt: 'Tapis, coins douillets, chaussettes en laine : comment aménager la maison quand il fait froid.' }
+];
+class Component extends DCLogic {
+  state = { cat: 'Tous' };
+  renderVals() {
+    const cur = this.state.cat;
+    const list = POSTS.filter(p => cur === 'Tous' || p.cat === cur).map(p => ({ ...p, tint: CATS[p.cat][0], deep: CATS[p.cat][1] }));
+    const showFeatured = cur === 'Tous';
+    return {
+      cats: ['Tous', ...Object.keys(CATS)].map(label => ({ label, bg: label === cur ? '#3b2a26' : '#fff', fg: label === cur ? '#fff6ea' : '#3b2a26', select: () => this.setState({ cat: label }) })),
+      showFeatured, f: POSTS[0], posts: showFeatured ? list.slice(1) : list
+    };
+  }
+}
+</script>
+</body>
+</html>

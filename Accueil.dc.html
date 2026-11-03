@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&amp;family=Nunito:wght@400;600;700;800&amp;display=swap">
+<script src="./catalogue.js"></script>
+<script src="./fun.js"></script>
+<style>*,*::before,*::after{box-sizing:border-box}body{margin:0;background:#fff6ea;color:#3b2a26;font-family:'Nunito',system-ui,sans-serif}a{color:#e85d3c}a:hover{color:#b8401f}a:focus-visible,button:focus-visible{outline:3px solid #ff7a59;outline-offset:3px}</style>
+</helmet>
+<div style="min-height:100vh;background:#fff6ea;color:#3b2a26;font-family:'Nunito',system-ui,sans-serif;overflow-x:hidden">
+  <dc-import name="SiteHeader" active="accueil" hint-size="100%,90px"></dc-import>
+
+  <section style="position:relative;margin:8px clamp(16px,4vw,48px) 0;padding:clamp(28px,5vw,64px);border-radius:40px;background:#ffe3d6;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,400px),1fr));gap:clamp(24px,4vw,56px);align-items:center;overflow:hidden">
+    <dc-import name="Paw" color="#ffcbb6" hint-size="140px,140px" style="position:absolute;left:-30px;bottom:-30px;width:140px;height:140px;transform:rotate(24deg)"></dc-import>
+    <dc-import name="Paw" color="#ffcbb6" hint-size="70px,70px" style="position:absolute;left:38%;top:24px;width:70px;height:70px;transform:rotate(-14deg)"></dc-import>
+    <div style="position:relative;display:flex;flex-direction:column;gap:20px">
+      <span style="align-self:flex-start;padding:6px 14px;border-radius:999px;background:#fff;font-weight:800;font-size:13px;color:#a23a1c;transform:rotate(-2deg)">Nouveau : la paire Flocon pour l’hiver</span>
+      <h1 style="margin:0;font-family:'Fredoka',sans-serif;font-weight:700;font-size:clamp(42px,6.5vw,80px);line-height:0.98;text-wrap:balance">Des chaussettes pour les chats qui glissent un peu trop.</h1>
+      <p style="margin:0;font-size:19px;line-height:1.5;max-width:40ch;text-wrap:pretty">Des picots en silicone sous chaque coussinet : ton chat retrouve de l’adhérence sur le parquet, le carrelage et dans l’escalier.</p>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:4px">
+        <a href="Agripatte%20Fiches%20Produit%20v2.dc.html" data-fun="paws" style="display:inline-flex;align-items:center;gap:10px;padding:0 26px;height:58px;border-radius:999px;background:#ff7a59;color:#fff;font-family:'Fredoka',sans-serif;font-weight:600;font-size:19px;text-decoration:none;box-shadow:0 5px 0 #c9502f" style-hover="background:#ff6a45;color:#fff">Voir les 6 paires →</a>
+        <a href="Conseils.dc.html" data-fun="paws" style="display:inline-flex;align-items:center;padding:0 24px;height:58px;border-radius:999px;background:#fff;border:2px solid #3b2a26;color:#3b2a26;font-family:'Fredoka',sans-serif;font-weight:600;font-size:18px;text-decoration:none" style-hover="background:#fff1e8;color:#3b2a26">Comment les enfiler ?</a>
+      </div>
+    </div>
+    <div style="position:relative">
+      <div style="border-radius:32px;background:#fff;padding:14px;transform:rotate(1.5deg);box-shadow:0 8px 0 #f2c2ad">
+        <img src="assets/collection.png" alt="Les six paires Agripatte" style="width:100%;display:block;border-radius:22px">
+      </div>
+      <div style="position:absolute;left:-18px;bottom:-18px;width:110px;height:110px;border-radius:50%;background:#3b2a26;color:#fff6ea;display:flex;flex-direction:column;align-items:center;justify-content:center;transform:rotate(-10deg);text-align:center">
+        <span style="font-family:'Fredoka',sans-serif;font-weight:700;font-size:28px;line-height:1">dès 9,90 €</span>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding:72px clamp(16px,4vw,48px) 0">
+    <h2 style="margin:0 0 24px;font-family:'Fredoka',sans-serif;font-weight:600;font-size:clamp(30px,3.5vw,42px)">Pourquoi des chaussettes&nbsp;?</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:16px">
+      <div style="padding:28px;border-radius:32px;background:#d9e4f7;display:flex;flex-direction:column;gap:12px;transform:rotate(-1deg)">
+        <dc-import name="Paw" color="#22407a" hint-size="40px,40px" style="width:40px;height:40px"></dc-import>
+        <h3 style="margin:0;font-family:'Fredoka',sans-serif;font-weight:600;font-size:24px;color:#22407a">Les sols glissent</h3>
+        <p style="margin:0;font-size:16px;line-height:1.5">Sur le parquet ciré, le carrelage ou dans l’escalier, les coussinets n’accrochent pas. Les picots remettent de l’adhérence là où il en manque.</p>
+      </div>
+      <div style="padding:28px;border-radius:32px;background:#f5e7d2;display:flex;flex-direction:column;gap:12px;transform:rotate(0.8deg)">
+        <dc-import name="Paw" color="#7a4622" hint-size="40px,40px" style="width:40px;height:40px"></dc-import>
+        <h3 style="margin:0;font-family:'Fredoka',sans-serif;font-weight:600;font-size:24px;color:#7a4622">Les pattes fatiguent</h3>
+        <p style="margin:0;font-size:16px;line-height:1.5">Un chat âgé hésite avant de sauter. Avec un bon appui, il remonte sur le canapé sans y réfléchir à deux fois.</p>
+      </div>
+      <div style="padding:28px;border-radius:32px;background:#ffdbe7;display:flex;flex-direction:column;gap:12px;transform:rotate(-0.6deg)">
+        <dc-import name="Paw" color="#b23a6c" hint-size="40px,40px" style="width:40px;height:40px"></dc-import>
+        <h3 style="margin:0;font-family:'Fredoka',sans-serif;font-weight:600;font-size:24px;color:#b23a6c">Les chatons foncent</h3>
+        <p style="margin:0;font-size:16px;line-height:1.5">Ils courent partout et freinent avec le nez. Une paire bien adaptée leur évite les dérapages et les bosses.</p>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding:72px clamp(16px,4vw,48px) 0">
+    <div style="display:flex;align-items:end;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:24px">
+      <h2 style="margin:0;font-family:'Fredoka',sans-serif;font-weight:600;font-size:clamp(30px,3.5vw,42px)">Nos 6 paires</h2>
+      <a href="Agripatte%20Fiches%20Produit%20v2.dc.html" style="font-weight:800;font-size:16px">Tout voir →</a>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,240px),1fr));gap:16px">
+      <sc-for list="{{ gammes }}" as="g" hint-placeholder-count="6">
+        <a href="{{ g.href }}" data-fun="wiggle" style="display:flex;flex-direction:column;gap:10px;padding:12px 12px 18px;border-radius:32px;background:{{ g.tint }};color:#3b2a26;text-decoration:none;transition:transform .2s" style-hover="transform:translateY(-4px) rotate(-1deg);color:#3b2a26">
+          <img src="assets/{{ g.slug }}.png" alt="{{ g.name }}" style="width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:24px;display:block;background:#fff">
+          <span style="display:flex;justify-content:space-between;align-items:baseline;gap:8px;padding:0 8px">
+            <span style="font-family:'Fredoka',sans-serif;font-weight:600;font-size:22px;color:{{ g.deep }}">{{ g.name }}</span>
+            <span style="font-weight:800;font-size:16px">{{ g.priceLabel }}</span>
+          </span>
+          <span style="padding:0 8px;font-size:15px;font-weight:700">{{ g.usage }}</span>
+        </a>
+      </sc-for>
+    </div>
+  </section>
+
+  <section style="padding:72px clamp(16px,4vw,48px) 0">
+    <h2 style="margin:0 0 24px;font-family:'Fredoka',sans-serif;font-weight:600;font-size:clamp(30px,3.5vw,42px)">Les enfiler en 3 étapes</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:16px">
+      <div style="display:flex;gap:16px;align-items:flex-start;padding:24px;border-radius:32px;background:#fff;border:2px solid #f0dccb">
+        <span style="flex:none;width:52px;height:52px;border-radius:50%;background:#ff7a59;color:#fff;display:grid;place-items:center;font-family:'Fredoka',sans-serif;font-weight:700;font-size:24px">1</span>
+        <span style="display:flex;flex-direction:column;gap:4px"><strong style="font-family:'Fredoka',sans-serif;font-weight:600;font-size:20px">Un moment calme</strong><span style="font-size:16px;line-height:1.5">Après le repas, quand il somnole sur tes genoux.</span></span>
+      </div>
+      <div style="display:flex;gap:16px;align-items:flex-start;padding:24px;border-radius:32px;background:#fff;border:2px solid #f0dccb">
+        <span style="flex:none;width:52px;height:52px;border-radius:50%;background:#ff7a59;color:#fff;display:grid;place-items:center;font-family:'Fredoka',sans-serif;font-weight:700;font-size:24px">2</span>
+        <span style="display:flex;flex-direction:column;gap:4px"><strong style="font-family:'Fredoka',sans-serif;font-weight:600;font-size:20px">Une patte à la fois</strong><span style="font-size:16px;line-height:1.5">Les picots dessous, le revers bien à plat.</span></span>
+      </div>
+      <div style="display:flex;gap:16px;align-items:flex-start;padding:24px;border-radius:32px;background:#fff;border:2px solid #f0dccb">
+        <span style="flex:none;width:52px;height:52px;border-radius:50%;background:#ff7a59;color:#fff;display:grid;place-items:center;font-family:'Fredoka',sans-serif;font-weight:700;font-size:24px">3</span>
+        <span style="display:flex;flex-direction:column;gap:4px"><strong style="font-family:'Fredoka',sans-serif;font-weight:600;font-size:20px">Une friandise</strong><span style="font-size:16px;line-height:1.5">Et quelques minutes pour qu’il s’habitue. C’est gagné.</span></span>
+      </div>
+    </div>
+  </section>
+
+  <section style="position:relative;margin:72px clamp(16px,4vw,48px) 0;padding:clamp(32px,5vw,56px);border-radius:40px;background:#ff7a59;color:#fff;display:flex;flex-wrap:wrap;gap:24px;align-items:center;justify-content:space-between;overflow:hidden">
+    <dc-import name="Paw" color="#ff967a" hint-size="160px,160px" style="position:absolute;right:30%;top:-40px;width:160px;height:160px;transform:rotate(-20deg)"></dc-import>
+    <h2 style="position:relative;margin:0;font-family:'Fredoka',sans-serif;font-weight:700;font-size:clamp(32px,4.5vw,56px);line-height:1;max-width:16ch">Livraison offerte dès 35&nbsp;€.</h2>
+    <a href="Agripatte%20Fiches%20Produit%20v2.dc.html" data-fun="paws" style="position:relative;display:inline-flex;align-items:center;padding:0 26px;height:58px;border-radius:999px;background:#3b2a26;color:#fff6ea;font-family:'Fredoka',sans-serif;font-weight:600;font-size:19px;text-decoration:none" style-hover="background:#2a1d1a;color:#fff6ea">Choisir une paire →</a>
+  </section>
+
+  <dc-import name="SiteFooter" hint-size="100%,260px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  componentDidMount() { const t = () => window.AGRI ? this.forceUpdate() : setTimeout(t, 50); t(); }
+  renderVals() {
+    const A = window.AGRI;
+    return { gammes: A ? A.GAMMES.map(g => ({ ...g, priceLabel: A.eur(g.price), href: A.PRODUIT + '?gamme=' + g.slug })) : [] };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&amp;family=Nunito:wght@400;600;700;800&amp;display=swap">
+<script src="./catalogue.js"></script>
+<script src="./fun.js"></script>
+<style>*,*::before,*::after{box-sizing:border-box}body{margin:0;background:#fff6ea;color:#3b2a26;font-family:'Nunito',system-ui,sans-serif}a{color:#e85d3c}a:hover{color:#b8401f}a:focus-visible,button:focus-visible{outline:3px solid #ff7a59;outline-offset:3px}</style>
+</helmet>
+<div style="min-height:100vh;background:#fff6ea;color:#3b2a26;font-family:'Nunito',system-ui,sans-serif;overflow-x:hidden">
+  <dc-import name="SiteHeader" active="faq" hint-size="100%,90px"></dc-import>
+
+  <section style="padding:24px clamp(16px,4vw,48px) 0;display:flex;flex-direction:column;gap:16px">
+    <h1 style="margin:0;font-family:'Fredoka',sans-serif;font-weight:700;font-size:clamp(44px,6vw,72px);line-height:1">Les questions qu’on nous pose</h1>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px">
+      <sc-for list="{{ cats }}" as="c" hint-placeholder-count="5">
+        <button onClick="{{ c.select }}" data-fun="pop" style="all:unset;cursor:pointer;padding:10px 18px;border-radius:999px;border:2px solid #3b2a26;font-weight:800;font-size:15px;background:{{ c.bg }};color:{{ c.fg }}">{{ c.label }}</button>
+      </sc-for>
+    </div>
+  </section>
+
+  <section style="padding:28px clamp(16px,4vw,48px) 0;display:flex;flex-wrap:wrap;gap:24px;align-items:flex-start">
+    <div style="flex:2 1 480px;display:flex;flex-direction:column;gap:12px;min-width:0">
+      <sc-for list="{{ qs }}" as="q" hint-placeholder-count="5">
+        <div style="border-radius:28px;background:{{ q.bg }};border:2px solid {{ q.ring }};overflow:hidden">
+          <button onClick="{{ q.toggle }}" data-fun="pop" style="all:unset;cursor:pointer;box-sizing:border-box;width:100%;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:20px 22px">
+            <span style="font-family:'Fredoka',sans-serif;font-weight:600;font-size:20px;line-height:1.25">{{ q.q }}</span>
+            <span style="flex:none;width:40px;height:40px;border-radius:50%;background:{{ q.btnBg }};color:{{ q.btnFg }};display:grid;place-items:center;font-size:24px;font-weight:800">{{ q.sign }}</span>
+          </button>
+          <sc-if value="{{ q.open }}" hint-placeholder-val="{{ false }}">
+            <p style="margin:0;padding:0 22px 22px;font-size:17px;line-height:1.55;max-width:64ch;text-wrap:pretty">{{ q.a }}</p>
+          </sc-if>
+        </div>
+      </sc-for>
+    </div>
+
+    <aside style="flex:1 1 280px;position:relative;display:flex;flex-direction:column;gap:14px;padding:28px;border-radius:32px;background:#d9e4f7;overflow:hidden">
+      <dc-import name="Paw" color="#c3d4f0" hint-size="110px,110px" style="position:absolute;right:-20px;bottom:-20px;width:110px;height:110px;transform:rotate(-18deg)"></dc-import>
+      <h2 style="position:relative;margin:0;font-family:'Fredoka',sans-serif;font-weight:700;font-size:28px;color:#22407a">Pas trouvé ta réponse&nbsp;?</h2>
+      <p style="position:relative;margin:0;font-size:17px;line-height:1.5">Écris-nous, on répond sous 24 h (sauf pendant la sieste).</p>
+      <a href="mailto:bonjour@agripatte.fr" style="position:relative;align-self:flex-start;display:inline-flex;align-items:center;padding:0 24px;height:54px;border-radius:999px;background:#22407a;color:#fff;font-family:'Fredoka',sans-serif;font-weight:600;font-size:18px;text-decoration:none" style-hover="background:#1a3263;color:#fff">bonjour@agripatte.fr</a>
+      <a href="Conseils.dc.html" style="position:relative;font-weight:800;color:#22407a">Ou lis nos conseils →</a>
+    </aside>
+  </section>
+
+  <dc-import name="SiteFooter" hint-size="100%,260px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const QS = [
+  ['Tailles', 'Comment choisir la bonne taille ?', 'Pèse ton chat : S jusqu’à 3 kg, M de 3 à 5 kg, L au-delà de 5 kg. Si tu hésites entre deux tailles, prends la plus petite : une chaussette trop grande tourne autour de la patte.'],
+  ['Tailles', 'Et si la taille ne va pas ?', 'Tu peux l’échanger gratuitement sous 30 jours, même si ton chat les a déjà essayées.'],
+  ['Utilisation', 'Mon chat va-t-il les supporter ?', 'La plupart des chats secouent les pattes pendant quelques minutes, puis oublient qu’ils les portent. Commence par de courtes séances, avec une friandise à la clé.'],
+  ['Utilisation', 'Combien de temps peut-il les garder ?', 'Quelques heures par jour, à l’intérieur. Retire-les la nuit pour que les coussinets respirent.'],
+  ['Utilisation', 'Peut-il sortir dehors avec ?', 'Elles sont faites pour l’intérieur. Dehors, les picots s’usent vite et les chaussettes se salissent.'],
+  ['Livraison', 'En combien de temps je les reçois ?', 'Sous 48 h à domicile avec Colissimo, ou en 3 à 4 jours ouvrés en point relais. La livraison est offerte dès 35 €.'],
+  ['Retours', 'Comment faire un retour ?', 'Écris-nous dans les 30 jours après réception. On t’envoie une étiquette de retour et on te rembourse dès qu’on reçoit le colis.'],
+  ['Entretien', 'Comment les laver ?', 'En machine à 30 °C, à l’envers pour protéger les picots. Pas de sèche-linge : laisse-les sécher à plat.']
+];
+class Component extends DCLogic {
+  state = { cat: 'Toutes', open: 0 };
+  renderVals() {
+    const cur = this.state.cat;
+    const cats = ['Toutes', ...Array.from(new Set(QS.map(q => q[0])))];
+    const list = QS.map((q, i) => ({ i, cat: q[0], q: q[1], a: q[2] })).filter(q => cur === 'Toutes' || q.cat === cur);
+    return {
+      cats: cats.map(label => ({ label, bg: label === cur ? '#3b2a26' : '#fff', fg: label === cur ? '#fff6ea' : '#3b2a26', select: () => this.setState({ cat: label }) })),
+      qs: list.map(q => { const open = this.state.open === q.i; return { ...q, open, sign: open ? '−' : '+', bg: open ? '#fff' : '#fff', ring: open ? '#ff7a59' : '#f0dccb', btnBg: open ? '#ff7a59' : '#ffe3d6', btnFg: open ? '#fff' : '#a23a1c', toggle: () => this.setState(s => ({ open: s.open === q.i ? -1 : q.i })) }; })
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&amp;family=Nunito:wght@400;600;700;800&amp;display=swap">
+<script src="./image-slot.js"></script>
+<script src="./catalogue.js"></script>
+<script src="./fun.js"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:#fff6ea;color:#3b2a26;font-family:'Nunito',system-ui,sans-serif}
+a{color:#e85d3c}a:hover{color:#b8401f}
+button:focus-visible{outline:3px solid #ff7a59;outline-offset:3px}
+@keyframes wiggle{0%,100%{transform:rotate(-6deg)}50%{transform:rotate(6deg)}}
+</style>
+</helmet>
+<div style="min-height:100vh;background:#fff6ea;color:#3b2a26;font-family:'Nunito',system-ui,sans-serif;overflow-x:hidden">
+
+  <dc-import name="SiteHeader" active="produits" hint-size="100%,90px"></dc-import>
+
+  <section style="position:relative;margin:8px clamp(16px,4vw,48px) 0;padding:clamp(28px,5vw,56px);border-radius:40px;background:#ffe3d6;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr));gap:24px;align-items:center;overflow:hidden">
+    <dc-import name="Paw" color="#ffcbb6" hint-size="120px,120px" style="position:absolute;right:4%;top:-20px;width:120px;height:120px;transform:rotate(18deg)"></dc-import>
+    <dc-import name="Paw" color="#ffcbb6" hint-size="80px,80px" style="position:absolute;right:18%;bottom:-14px;width:80px;height:80px;transform:rotate(-12deg)"></dc-import>
+    <div style="position:relative;display:flex;flex-direction:column;gap:16px">
+      <span style="align-self:flex-start;padding:6px 14px;border-radius:999px;background:#fff;font-weight:800;font-size:13px;color:#a23a1c;transform:rotate(-2deg)">Miaou garanti</span>
+      <h1 style="margin:0;font-family:'Fredoka',sans-serif;font-weight:700;font-size:clamp(40px,6.5vw,76px);line-height:0.98;letter-spacing:-0.01em;text-wrap:balance">Fini le patinage sur le parquet&nbsp;!</h1>
+    </div>
+    <p style="position:relative;margin:0;font-size:19px;line-height:1.5;max-width:42ch;text-wrap:pretty">Six paires de chaussettes antidérapantes, une pour chaque genre de chat : le chaton tout fou, le sprinteur de 3 h du matin ou le vieux sage qui aime ses siestes.</p>
+  </section>
+
+  <section style="padding:40px clamp(16px,4vw,48px) 8px">
+    <h2 style="margin:0 0 20px;font-family:'Fredoka',sans-serif;font-weight:600;font-size:28px">Choisis ta paire</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:16px">
+      <sc-for list="{{ tabs }}" as="t" hint-placeholder-count="6">
+        <button onClick="{{ t.select }}" data-fun="wiggle" style="all:unset;cursor:pointer;display:flex;flex-direction:column;gap:8px;padding:10px 10px 14px;border-radius:28px;background:{{ t.tint }};border:3px solid {{ t.ring }};transform:{{ t.tf }};transition:transform .2s ease" style-hover="transform:translateY(-4px) rotate(-1.5deg)">
+          <img src="assets/{{ t.slug }}.png" alt="{{ t.name }}" style="width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:20px;background:#fff;display:block">
+          <span style="padding:0 6px;font-family:'Fredoka',sans-serif;font-weight:600;font-size:18px;line-height:1.1;color:{{ t.deep }}">{{ t.name }}</span>
+          <span style="padding:0 6px;font-size:13px;font-weight:700;color:#3b2a26">{{ t.usage }}</span>
+        </button>
+      </sc-for>
+    </div>
+  </section>
+
+  <main style="margin:24px clamp(16px,4vw,48px) 0;padding:clamp(16px,3vw,32px);border-radius:40px;background:{{ g.tint }};display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:clamp(20px,3vw,40px);transition:background .3s ease">
+    <div style="position:relative;display:flex;flex-direction:column;gap:12px">
+      <sc-for list="{{ gallery }}" as="im" hint-placeholder-count="1">
+        <div style="display:{{ im.display }};flex-direction:column;gap:12px">
+          <div style="position:relative;width:100%;aspect-ratio:1/1;border-radius:32px;overflow:hidden;background:#fff">
+            <image-slot id="{{ im.slug }}-main" shape="rounded" radius="32" src="assets/{{ im.slug }}.png" placeholder="Photo produit · {{ im.name }}"></image-slot>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px">
+            <div style="position:relative;aspect-ratio:1/1"><image-slot id="{{ im.slug }}-sole" shape="rounded" radius="22" placeholder="Semelle"></image-slot></div>
+            <div style="position:relative;aspect-ratio:1/1"><image-slot id="{{ im.slug }}-flat" shape="rounded" radius="22" placeholder="Chat qui la porte"></image-slot></div>
+            <div style="position:relative;aspect-ratio:1/1"><image-slot id="{{ im.slug }}-pack" shape="rounded" radius="22" placeholder="Emballage"></image-slot></div>
+          </div>
+        </div>
+      </sc-for>
+      <div style="position:absolute;top:-10px;right:-10px;width:112px;height:112px;border-radius:50%;background:#ff7a59;color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;transform:rotate(10deg);box-shadow:0 6px 0 #c9502f;pointer-events:none">
+        <span style="font-family:'Fredoka',sans-serif;font-weight:700;font-size:26px;line-height:1">{{ g.price }}</span>
+        <span style="font-size:12px;font-weight:800">{{ g.unit }}</span>
+      </div>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:22px;padding:clamp(4px,1vw,12px) 0">
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <span style="padding:6px 14px;border-radius:999px;background:#fff;color:{{ g.deep }};font-weight:800;font-size:13px">{{ g.usage }}</span>
+        <span style="padding:6px 14px;border-radius:999px;background:transparent;border:2px solid {{ g.deep }};color:{{ g.deep }};font-weight:800;font-size:13px">{{ g.tier }}</span>
+      </div>
+      <div>
+        <h2 style="margin:0 0 12px;font-family:'Fredoka',sans-serif;font-weight:700;font-size:clamp(40px,5vw,60px);line-height:1;color:{{ g.deep }}">{{ g.name }}</h2>
+        <p style="margin:0;font-size:18px;line-height:1.55;max-width:46ch;text-wrap:pretty">{{ g.pitch }}</p>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <span style="font-weight:800;font-size:14px">Taille de ton chat</span>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <sc-for list="{{ sizes }}" as="s" hint-placeholder-count="3">
+            <button onClick="{{ s.select }}" data-fun="pop" style="all:unset;cursor:pointer;flex:1;min-width:110px;padding:12px 16px;border-radius:20px;display:flex;flex-direction:column;gap:2px;background:{{ s.bg }};color:{{ s.fg }};border:2px solid #3b2a26;transition:transform .15s" style-hover="transform:translateY(-2px)">
+              <span style="font-family:'Fredoka',sans-serif;font-weight:700;font-size:20px">{{ s.label }}</span>
+              <span style="font-size:13px;font-weight:600">{{ s.weight }}</span>
+            </button>
+          </sc-for>
+        </div>
+      </div>
+
+      <div style="display:flex;gap:12px;flex-wrap:wrap">
+        <div style="display:flex;align-items:center;background:#fff;border-radius:999px;border:2px solid #3b2a26">
+          <button onClick="{{ dec }}" data-fun="pop" style="all:unset;cursor:pointer;width:48px;height:52px;display:grid;place-items:center;font-size:22px;font-weight:800">−</button>
+          <span style="min-width:28px;text-align:center;font-weight:800;font-size:18px">{{ qty }}</span>
+          <button onClick="{{ inc }}" data-fun="pop" style="all:unset;cursor:pointer;width:48px;height:52px;display:grid;place-items:center;font-size:22px;font-weight:800">+</button>
+        </div>
+        <button onClick="{{ addToCart }}" data-fun="cart" style="all:unset;cursor:pointer;flex:1;min-width:220px;display:flex;align-items:center;gap:12px;padding:0 24px;height:56px;border-radius:999px;background:#ff7a59;color:#fff;font-family:'Fredoka',sans-serif;font-weight:600;font-size:20px;box-shadow:0 5px 0 #c9502f;transition:transform .1s,box-shadow .1s" style-hover="background:#ff6a45" style-active="transform:translateY(4px);box-shadow:0 1px 0 #c9502f">
+          <dc-import name="Paw" color="#ffffff" hint-size="24px,24px" style="width:24px;height:24px;flex:none"></dc-import>
+          <span>{{ ctaLabel }}</span>
+        </button>
+      </div>
+
+      <div style="display:grid;grid-template-columns:auto 1fr;gap:12px 20px;font-size:15px;padding:20px;border-radius:24px;background:#fff">
+        <span style="font-weight:800">Adhérence</span>
+        <span style="display:flex;gap:6px;align-items:center;flex-wrap:wrap">
+          <sc-for list="{{ grip }}" as="p" hint-placeholder-count="5"><dc-import name="Paw" color="{{ p.c }}" hint-size="20px,20px" style="width:20px;height:20px"></dc-import></sc-for>
+          <span style="margin-left:6px;font-weight:700">{{ g.gripLabel }}</span>
+        </span>
+        <span style="font-weight:800">Coloris</span><span>{{ g.coloris }}</span>
+        <span style="font-weight:800">Matière</span><span>{{ g.matiere }}</span>
+        <span style="font-weight:800">Entretien</span><span>{{ g.care }}</span>
+        <span style="font-weight:800">Dans la boîte</span><span>{{ g.contenu }}</span>
+      </div>
+    </div>
+  </main>
+
+  <section style="padding:40px clamp(16px,4vw,48px) 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:16px">
+    <sc-for list="{{ features }}" as="f" hint-placeholder-count="3">
+      <div style="padding:24px;border-radius:32px;background:#fff;border:2px solid #f0dccb;display:flex;flex-direction:column;gap:10px;transform:{{ f.tf }}">
+        <span style="width:44px;height:44px;border-radius:50%;background:{{ g.tint }};color:{{ g.deep }};display:grid;place-items:center;font-family:'Fredoka',sans-serif;font-weight:700;font-size:20px">{{ f.n }}</span>
+        <h3 style="margin:0;font-family:'Fredoka',sans-serif;font-weight:600;font-size:22px">{{ f.t }}</h3>
+        <p style="margin:0;font-size:16px;line-height:1.5;text-wrap:pretty">{{ f.d }}</p>
+      </div>
+    </sc-for>
+  </section>
+
+  <sc-if value="{{ showCompare }}" hint-placeholder-val="{{ true }}">
+    <section style="padding:48px clamp(16px,4vw,48px) 0">
+      <h2 style="margin:0 0 20px;font-family:'Fredoka',sans-serif;font-weight:600;font-size:28px">Laquelle pour mon chat&nbsp;?</h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,320px),1fr));gap:12px">
+        <sc-for list="{{ tabs }}" as="t" hint-placeholder-count="6">
+          <button onClick="{{ t.select }}" data-fun="wiggle" style="all:unset;cursor:pointer;display:grid;grid-template-columns:64px 1fr auto;gap:14px;align-items:center;padding:10px 18px 10px 10px;border-radius:24px;background:#fff;border:2px solid {{ t.rowRing }}" style-hover="background:#fffaf3">
+            <img src="assets/{{ t.slug }}.png" alt="" style="width:64px;height:64px;border-radius:18px;object-fit:cover;display:block">
+            <span style="display:flex;flex-direction:column;gap:2px;min-width:0">
+              <span style="font-family:'Fredoka',sans-serif;font-weight:600;font-size:18px;color:{{ t.deep }}">{{ t.name }}</span>
+              <span style="font-size:14px">{{ t.usage }} · adhérence {{ t.gripLow }}</span>
+            </span>
+            <span style="font-weight:800;white-space:nowrap">{{ t.price }}</span>
+          </button>
+        </sc-for>
+      </div>
+    </section>
+  </sc-if>
+
+  <dc-import name="SiteFooter" hint-size="100%,260px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;defaultGamme&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;essentielles&quot;,&quot;guimauve&quot;,&quot;moussaillon&quot;,&quot;flocon&quot;,&quot;neon&quot;,&quot;sieste&quot;],&quot;default&quot;:&quot;essentielles&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;showCompare&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;}}">
+const SIZES = [{label:'S', weight:'Chaton · 1–3 kg'},{label:'M', weight:'Adulte · 3–5 kg'},{label:'L', weight:'Gros matou · 5 kg +'}];
+const GAMMES = [
+  {slug:'essentielles', tint:'#ebe7e3', deep:'#57504b', name:'Les Essentielles', coloris:'Gris chiné, pattes blanches', usage:'Tous les jours', tier:'Le petit prix', price:'9,90 €', unit:'les 4', grip:3, gripLabel:'Bonne', matiere:'Coton 80 %, élasthanne 20 %', care:'Machine 30 °C', contenu:'4 chaussettes (une par patte, logique)',
+   pitch:'La chaussette de base pour que ton chat arrête de faire du patin sur le carrelage. Simple et efficace, sans chichis.',
+   features:[['Picots silicone','Des petits points sous chaque coussinet. Ça freine sans bloquer.'],['Lavable en machine','À 30 °C, avec tes chaussettes à toi.'],['Gris passe-partout','Ce gris va avec tous les pelages et ne montre pas la poussière.']]},
+  {slug:'guimauve', tint:'#ffdbe7', deep:'#b23a6c', name:'Guimauve', coloris:'Rose bonbon, pattes blanches', usage:'Chatons', tier:'Petits pieds', price:'11,90 €', unit:'les 4', grip:3, gripLabel:'Bonne', matiere:'Coton extra-doux 85 %, élasthanne 15 %', care:'Machine 30 °C', contenu:'4 chaussettes',
+   pitch:'Pour les chatons qui découvrent la maison à toute vitesse et freinent avec le nez. Une maille toute douce, toute légère.',
+   features:[['Maille extra-douce','Un coton fin qui ne gêne pas les petites pattes.'],['Picots rapprochés','Plus de points sur une petite surface, pour les premiers sprints.'],['Taille S renforcée','Pour les chatons de 1 à 3 kg, avec un revers qui tient.']]},
+  {slug:'moussaillon', tint:'#d9e4f7', deep:'#22407a', name:'Moussaillon', coloris:'Bleu marine, ancre et rayures blanches', usage:'Parquet & escaliers', tier:'Grip renforcé', price:'14,90 €', unit:'les 4', grip:4, gripLabel:'Forte', matiere:'Coton peigné 80 %, élasthanne 20 %', care:'Machine 30 °C, à l\u2019envers', contenu:'4 chaussettes',
+   pitch:'Marinière et ancre marine pour garder le cap sur le parquet ciré. Les gros picots blancs tiennent bon, même dans les virages serrés.',
+   features:[['Gros picots','Des points plus larges, pour accrocher sur le parquet et le carrelage.'],['Testé dans l\u2019escalier','Montées et descentes à fond de train sans aucune glissade.'],['Revers maintien','Un poignet rayé un peu plus haut pour que la chaussette reste en place.']]},
+  {slug:'flocon', tint:'#ffdcd6', deep:'#b3261e', name:'Flocon', coloris:'Rouge, flocons blancs', usage:'Hiver & sols froids', tier:'Édition hiver', price:'16,90 €', unit:'les 4', grip:4, gripLabel:'Forte', matiere:'Coton 60 %, laine 25 %, élasthanne 15 %', care:'Machine 30 °C', contenu:'4 chaussettes + pochette cadeau',
+   pitch:'Pour les chats qui détestent le carrelage froid en hiver. Une maille épaisse avec un peu de laine, et des flocons pour l\u2019ambiance de Noël.',
+   features:[['Maille épaisse','Un peu de laine pour garder les coussinets au chaud.'],['Édition limitée','Disponible d\u2019octobre à février, tant qu\u2019il en reste.'],['Idée cadeau','Livrée dans une pochette prête à glisser sous le sapin.']]},
+  {slug:'neon', tint:'#e6f7bd', deep:'#3f5c00', name:'Néon', coloris:'Noir, pattes et rayures vert fluo', usage:'Chats sportifs', tier:'Grip maximal', price:'14,90 €', unit:'les 4', grip:5, gripLabel:'Maximale', matiere:'Coton technique 75 %, élasthanne 25 %', care:'Machine 30 °C', contenu:'4 chaussettes',
+   pitch:'Pour les chats qui piquent un sprint à 3 h du matin. Une adhérence maximale pour les départs canon, et des bandes fluo pour les repérer dans le noir.',
+   features:[['Adhérence maximale','Picots silicone plus durs, pour les départs arrêtés et les freinages d\u2019urgence.'],['Bandes fluo','Tu verras ton chat arriver dans le couloir, même la nuit.'],['Maille respirante','Plus d\u2019élasthanne pour suivre chaque mouvement.']]},
+  {slug:'sieste', tint:'#f5e7d2', deep:'#7a4622', name:'Douce Sieste', coloris:'Crème, pattes chocolat', usage:'Chats seniors', tier:'Extra-confort', price:'19,90 €', unit:'les 4', grip:4, gripLabel:'Stable', matiere:'Bambou 70 %, coton 25 %, élasthanne 5 %', care:'Machine 30 °C', contenu:'4 chaussettes + guide d\u2019enfilage',
+   pitch:'Pour les chats d\u2019un certain âge qui ont les pattes un peu raides. Elles tiennent chaud, ne serrent pas et aident à sauter sur le canapé en confiance.',
+   features:[['Revers tout doux','Rien ne serre : la circulation des pattes âgées n\u2019est pas gênée.'],['Fibre de bambou','Tient chaud aux articulations sans faire transpirer les coussinets.'],['Enfilage facile','Une ouverture large pour les chats qui n\u2019aiment pas qu\u2019on leur touche les pattes.']]}
+];
+class Component extends DCLogic {
+  state = { gi: null, si: 1, qty: 1, added: false, cart: 0 };
+  componentDidMount() {
+    if (this.state.gi === null) {
+      const q = new URLSearchParams(window.location.search).get('gamme');
+      const i = GAMMES.findIndex(g => g.slug === (q || this.props.defaultGamme));
+      this.setState({ gi: i < 0 ? 0 : i });
+    }
+  }
+  pick(gi) { this.setState({ gi, qty: 1, added: false }); }
+  renderVals() {
+    const gi = this.state.gi ?? 0, g = GAMMES[gi], { si, qty } = this.state;
+    const tilt = ['rotate(-1deg)', 'rotate(0.8deg)', 'rotate(-0.6deg)'];
+    return {
+      g, qty, showCompare: this.props.showCompare ?? true, cartCount: this.state.cart,
+      tabs: GAMMES.map((x, i) => ({ ...x, gripLow: x.gripLabel.toLowerCase(),
+        ring: i === gi ? x.deep : 'transparent', tf: i === gi ? 'translateY(-4px) rotate(-1.5deg)' : 'none',
+        rowRing: i === gi ? x.deep : '#f0dccb', select: () => this.pick(i) })),
+      gallery: GAMMES.map((x, i) => ({ slug: x.slug, name: x.name, display: i === gi ? 'flex' : 'none' })),
+      sizes: SIZES.map((s, i) => ({ ...s, bg: i === si ? '#3b2a26' : '#fff', fg: i === si ? '#fff6ea' : '#3b2a26', select: () => this.setState({ si: i }) })),
+      grip: [1,2,3,4,5].map(n => ({ c: n <= g.grip ? '#ff7a59' : '#f0dccb' })),
+      features: g.features.map(([t, d], i) => ({ n: i + 1, t, d, tf: tilt[i] })),
+      dec: () => this.setState(s => ({ qty: Math.max(1, s.qty - 1) })),
+      inc: () => this.setState(s => ({ qty: s.qty + 1 })),
+      ctaLabel: this.state.added ? 'Dans le panier, miaou !' : 'Ajouter au panier',
+      goCart: 'Panier.dc.html',
+      addToCart: () => { if (window.AGRI) window.AGRI.add(g.slug, SIZES[si].label, qty); this.setState({ added: true }); }
+    };
+  }
+}
+</script>
+</body>
+</html>

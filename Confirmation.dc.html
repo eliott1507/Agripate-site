@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&amp;family=Nunito:wght@400;600;700;800&amp;display=swap">
+<script src="./catalogue.js"></script>
+<script src="./fun.js"></script>
+<style>*,*::before,*::after{box-sizing:border-box}body{margin:0;background:#fff6ea;color:#3b2a26;font-family:'Nunito',system-ui,sans-serif}a{color:#e85d3c}a:hover{color:#b8401f}a:focus-visible,button:focus-visible{outline:3px solid #ff7a59;outline-offset:3px}</style>
+</helmet>
+<div style="min-height:100vh;background:#fff6ea;color:#3b2a26;font-family:'Nunito',system-ui,sans-serif;overflow-x:hidden">
+  <dc-import name="SiteHeader" active="panier" hint-size="100%,90px"></dc-import>
+
+  <section style="position:relative;margin:8px clamp(16px,4vw,48px) 0;padding:clamp(32px,6vw,72px);border-radius:40px;background:#e6f7bd;overflow:hidden;display:flex;flex-direction:column;gap:18px;align-items:flex-start">
+    <dc-import name="Paw" color="#ff7a59" hint-size="70px,70px" style="position:absolute;right:8%;top:28px;width:70px;height:70px;transform:rotate(20deg)"></dc-import>
+    <dc-import name="Paw" color="#22407a" hint-size="44px,44px" style="position:absolute;right:20%;top:96px;width:44px;height:44px;transform:rotate(-15deg)"></dc-import>
+    <dc-import name="Paw" color="#b23a6c" hint-size="56px,56px" style="position:absolute;right:5%;bottom:40px;width:56px;height:56px;transform:rotate(-30deg)"></dc-import>
+    <dc-import name="Paw" color="#c7f06a" hint-size="120px,120px" style="position:absolute;right:24%;bottom:-36px;width:120px;height:120px;transform:rotate(12deg)"></dc-import>
+    <span style="position:relative;padding:6px 14px;border-radius:999px;background:#fff;font-weight:800;font-size:14px;color:#3f5c00">Commande n° {{ number }}</span>
+    <h1 style="position:relative;margin:0;font-family:'Fredoka',sans-serif;font-weight:700;font-size:clamp(44px,7vw,88px);line-height:0.95;max-width:12ch">Commande reçue, miaou&nbsp;!</h1>
+    <p style="position:relative;margin:0;font-size:20px;line-height:1.5;max-width:44ch;text-wrap:pretty">{{ message }}</p>
+  </section>
+
+  <section style="padding:40px clamp(16px,4vw,48px) 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,360px),1fr));gap:24px;align-items:start">
+    <div style="display:flex;flex-direction:column;gap:16px;padding:28px;border-radius:32px;background:#fff;border:2px solid #f0dccb">
+      <h2 style="margin:0;font-family:'Fredoka',sans-serif;font-weight:600;font-size:26px">Et maintenant&nbsp;?</h2>
+      <sc-for list="{{ steps }}" as="s" hint-placeholder-count="4">
+        <div style="display:flex;gap:16px;align-items:flex-start">
+          <span style="flex:none;width:44px;height:44px;border-radius:50%;display:grid;place-items:center;font-family:'Fredoka',sans-serif;font-weight:700;font-size:18px;background:{{ s.bg }};color:{{ s.fg }}">{{ s.n }}</span>
+          <span style="display:flex;flex-direction:column;gap:2px;padding-top:2px"><strong style="font-family:'Fredoka',sans-serif;font-weight:600;font-size:19px">{{ s.t }}</strong><span style="font-size:15px">{{ s.d }}</span></span>
+        </div>
+      </sc-for>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:14px;padding:28px;border-radius:32px;background:#ffe3d6">
+      <h2 style="margin:0;font-family:'Fredoka',sans-serif;font-weight:600;font-size:26px">Récapitulatif</h2>
+      <sc-for list="{{ lines }}" as="l" hint-placeholder-count="2">
+        <div style="display:grid;grid-template-columns:56px 1fr auto;gap:12px;align-items:center;padding:8px;border-radius:20px;background:#fff">
+          <img src="assets/{{ l.slug }}.png" alt="" style="width:56px;height:56px;border-radius:14px;object-fit:cover;display:block">
+          <span style="display:flex;flex-direction:column"><span style="font-family:'Fredoka',sans-serif;font-weight:600;font-size:17px;color:{{ l.deep }}">{{ l.name }}</span><span style="font-size:14px;font-weight:700">Taille {{ l.size }} · × {{ l.qty }}</span></span>
+          <span style="font-weight:800;padding-right:8px">{{ l.lineLabel }}</span>
+        </div>
+      </sc-for>
+      <div style="display:grid;grid-template-columns:1fr auto;gap:8px;font-size:16px">
+        <span>Livraison · {{ mode }}</span><span style="font-weight:800">{{ shipLabel }}</span>
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:baseline;padding-top:14px;border-top:2px dashed #ffcbb6">
+        <span style="font-family:'Fredoka',sans-serif;font-weight:600;font-size:22px">Total payé</span>
+        <span style="font-family:'Fredoka',sans-serif;font-weight:700;font-size:30px">{{ totalLabel }}</span>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding:32px clamp(16px,4vw,48px) 0;display:flex;gap:12px;flex-wrap:wrap">
+    <a href="Conseils.dc.html" data-fun="paws" style="display:inline-flex;align-items:center;padding:0 26px;height:58px;border-radius:999px;background:#ff7a59;color:#fff;font-family:'Fredoka',sans-serif;font-weight:600;font-size:19px;text-decoration:none;box-shadow:0 5px 0 #c9502f" style-hover="background:#ff6a45;color:#fff">Lire nos conseils d’enfilage →</a>
+    <a href="Accueil.dc.html" style="display:inline-flex;align-items:center;padding:0 24px;height:58px;border-radius:999px;background:#fff;border:2px solid #3b2a26;color:#3b2a26;font-family:'Fredoka',sans-serif;font-weight:600;font-size:18px;text-decoration:none" style-hover="background:#fff1e8;color:#3b2a26">Retour à l’accueil</a>
+  </section>
+
+  <dc-import name="SiteFooter" hint-size="100%,260px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  componentDidMount() {
+    const t = () => window.AGRI ? this.forceUpdate() : setTimeout(t, 50); t();
+    const r = () => window.AGRI_FUN ? window.AGRI_FUN.rain() : setTimeout(r, 80); setTimeout(r, 300);
+  }
+  renderVals() {
+    const A = window.AGRI;
+    if (!A) return { lines: [], steps: [] };
+    const o = A.lastOrder() || { number: 'AGR-48213', cat: 'Biscotte', lines: [{ slug: 'moussaillon', size: 'M', qty: 1 }, { slug: 'sieste', size: 'L', qty: 2 }], ship: 0, total: 54.7, mode: 'À domicile' };
+    const lines = o.lines.map(x => { const g = A.bySlug(x.slug); return { ...x, ...g, lineLabel: A.eur(g.price * x.qty) }; });
+    const S = [['Commande reçue', 'Aujourd’hui. Un e-mail de confirmation vient de partir.'], ['Préparée avec soin', 'Sous 24 h, dans notre atelier.'], ['Expédiée', 'Tu recevras le numéro de suivi par e-mail.'], ['Dans ta boîte aux lettres', 'Prépare les friandises.']];
+    return {
+      number: o.number, mode: o.mode, lines,
+      message: o.cat ? o.cat + ' va bientôt pouvoir courir partout sans glisser. On s’occupe de tout.' : 'Ton chat va bientôt pouvoir courir partout sans glisser. On s’occupe de tout.',
+      shipLabel: o.ship ? A.eur(o.ship) : 'Offerte', totalLabel: A.eur(o.total),
+      steps: S.map(([t, d], i) => ({ n: i + 1, t, d, bg: i === 0 ? '#3f5c00' : '#f0dccb', fg: i === 0 ? '#fff' : '#3b2a26' }))
+    };
+  }
+}
+</script>
+</body>
+</html>

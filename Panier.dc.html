@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&amp;family=Nunito:wght@400;600;700;800&amp;display=swap">
+<script src="./catalogue.js"></script>
+<script src="./fun.js"></script>
+<style>*,*::before,*::after{box-sizing:border-box}body{margin:0;background:#fff6ea;color:#3b2a26;font-family:'Nunito',system-ui,sans-serif}a{color:#e85d3c}a:hover{color:#b8401f}a:focus-visible,button:focus-visible{outline:3px solid #ff7a59;outline-offset:3px}</style>
+</helmet>
+<div style="min-height:100vh;background:#fff6ea;color:#3b2a26;font-family:'Nunito',system-ui,sans-serif;overflow-x:hidden">
+  <dc-import name="SiteHeader" active="panier" hint-size="100%,90px"></dc-import>
+
+  <section style="padding:24px clamp(16px,4vw,48px) 0">
+    <h1 style="margin:0 0 24px;font-family:'Fredoka',sans-serif;font-weight:700;font-size:clamp(40px,5vw,60px);line-height:1">Ton panier</h1>
+
+    <sc-if value="{{ empty }}" hint-placeholder-val="{{ false }}">
+      <div style="position:relative;padding:clamp(32px,5vw,56px);border-radius:40px;background:#ffe3d6;display:flex;flex-direction:column;gap:16px;align-items:flex-start;overflow:hidden">
+        <dc-import name="Paw" color="#ffcbb6" hint-size="140px,140px" style="position:absolute;right:6%;top:20px;width:140px;height:140px;transform:rotate(18deg)"></dc-import>
+        <h2 style="position:relative;margin:0;font-family:'Fredoka',sans-serif;font-weight:600;font-size:32px">Il est vide comme une gamelle à 6 h du matin.</h2>
+        <p style="position:relative;margin:0;font-size:18px">Il y a six paires qui n’attendent que ton chat.</p>
+        <a href="Agripatte%20Fiches%20Produit%20v2.dc.html" data-fun="paws" style="position:relative;display:inline-flex;align-items:center;padding:0 26px;height:58px;border-radius:999px;background:#ff7a59;color:#fff;font-family:'Fredoka',sans-serif;font-weight:600;font-size:19px;text-decoration:none;box-shadow:0 5px 0 #c9502f" style-hover="background:#ff6a45;color:#fff">Voir les chaussettes →</a>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ full }}" hint-placeholder-val="{{ true }}">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,360px),1fr));gap:24px;align-items:start">
+        <div style="display:flex;flex-direction:column;gap:12px;grid-column:span 1;min-width:0">
+          <sc-for list="{{ lines }}" as="l" hint-placeholder-count="2">
+            <div style="display:grid;grid-template-columns:96px minmax(0,1fr);gap:16px;padding:12px;border-radius:32px;background:{{ l.tint }}">
+              <img src="assets/{{ l.slug }}.png" alt="{{ l.name }}" style="width:96px;height:96px;border-radius:22px;object-fit:cover;display:block;background:#fff">
+              <div style="display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;padding-right:8px">
+                <div style="display:flex;flex-direction:column;gap:2px;min-width:140px">
+                  <span style="font-family:'Fredoka',sans-serif;font-weight:600;font-size:22px;color:{{ l.deep }}">{{ l.name }}</span>
+                  <span style="font-size:15px;font-weight:700">Taille {{ l.size }} · lot de 4</span>
+                  <button onClick="{{ l.remove }}" data-fun="poof" style="all:unset;cursor:pointer;margin-top:4px;font-size:14px;font-weight:700;text-decoration:underline;color:#3b2a26">Retirer</button>
+                </div>
+                <div style="display:flex;align-items:center;gap:16px">
+                  <div style="display:flex;align-items:center;background:#fff;border-radius:999px;border:2px solid #3b2a26">
+                    <button onClick="{{ l.dec }}" data-fun="pop" style="all:unset;cursor:pointer;width:44px;height:44px;display:grid;place-items:center;font-size:20px;font-weight:800">−</button>
+                    <span style="min-width:24px;text-align:center;font-weight:800;font-size:17px">{{ l.qty }}</span>
+                    <button onClick="{{ l.inc }}" data-fun="pop" style="all:unset;cursor:pointer;width:44px;height:44px;display:grid;place-items:center;font-size:20px;font-weight:800">+</button>
+                  </div>
+                  <span style="min-width:80px;text-align:right;font-family:'Fredoka',sans-serif;font-weight:600;font-size:20px">{{ l.lineLabel }}</span>
+                </div>
+              </div>
+            </div>
+          </sc-for>
+          <a href="Agripatte%20Fiches%20Produit%20v2.dc.html" style="align-self:flex-start;margin-top:8px;font-weight:800">← Continuer mes achats</a>
+        </div>
+
+        <aside style="display:flex;flex-direction:column;gap:18px;padding:28px;border-radius:32px;background:#fff;border:2px solid #f0dccb">
+          <h2 style="margin:0;font-family:'Fredoka',sans-serif;font-weight:600;font-size:26px">Récapitulatif</h2>
+          <div style="display:flex;flex-direction:column;gap:10px;padding:16px;border-radius:20px;background:#fff6ea">
+            <span style="font-weight:800;font-size:15px">{{ freeMsg }}</span>
+            <div style="position:relative;height:14px;border-radius:999px;background:#f0dccb">
+              <div style="height:100%;border-radius:999px;background:#ff7a59;width:{{ pct }}"></div>
+            </div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr auto;gap:10px;font-size:16px">
+            <span>Sous-total</span><span style="font-weight:800">{{ subLabel }}</span>
+            <span>Livraison</span><span style="font-weight:800">{{ shipLabel }}</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:baseline;padding-top:16px;border-top:2px dashed #f0dccb">
+            <span style="font-family:'Fredoka',sans-serif;font-weight:600;font-size:22px">Total</span>
+            <span style="font-family:'Fredoka',sans-serif;font-weight:700;font-size:32px">{{ totalLabel }}</span>
+          </div>
+          <a href="Commande.dc.html" data-fun="paws" style="display:flex;align-items:center;justify-content:space-between;padding:0 24px;height:58px;border-radius:999px;background:#ff7a59;color:#fff;font-family:'Fredoka',sans-serif;font-weight:600;font-size:19px;text-decoration:none;box-shadow:0 5px 0 #c9502f" style-hover="background:#ff6a45;color:#fff"><span>Passer commande</span><span>→</span></a>
+          <span style="font-size:14px;font-weight:600">Paiement sécurisé · Retours sous 30 jours</span>
+        </aside>
+      </div>
+    </sc-if>
+  </section>
+
+  <dc-import name="SiteFooter" hint-size="100%,260px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  componentDidMount() {
+    this.up = () => this.forceUpdate(); window.addEventListener('agri-cart', this.up);
+    const t = () => window.AGRI ? this.forceUpdate() : setTimeout(t, 50); t();
+  }
+  componentWillUnmount() { window.removeEventListener('agri-cart', this.up); }
+  renderVals() {
+    const A = window.AGRI;
+    if (!A) return { empty: false, full: true, lines: [] };
+    const cart = A.read();
+    const set = (i, q) => { const c = A.read(); if (q <= 0) c.splice(i, 1); else c[i].qty = q; A.write(c); };
+    const lines = A.lines().map(l => ({ ...l, lineLabel: A.eur(l.line), inc: () => set(l.i, l.qty + 1), dec: () => set(l.i, l.qty - 1), remove: () => set(l.i, 0) }));
+    const sub = A.subtotal(), ship = sub >= A.FREE ? 0 : 4.9, left = A.FREE - sub;
+    return {
+      lines, empty: cart.length === 0, full: cart.length > 0,
+      subLabel: A.eur(sub), shipLabel: ship ? A.eur(ship) : 'Offerte', totalLabel: A.eur(sub + ship),
+      pct: Math.min(100, sub / A.FREE * 100) + '%',
+      freeMsg: left > 0 ? 'Plus que ' + A.eur(left) + ' pour la livraison offerte' : 'Livraison offerte, bravo !'
+    };
+  }
+}
+</script>
+</body>
+</html>
